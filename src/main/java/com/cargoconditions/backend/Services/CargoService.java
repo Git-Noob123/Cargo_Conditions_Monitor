@@ -12,10 +12,15 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class CargoService {
-    private final CargoRepository cargoRepository;
+    private CargoRepository cargoRepository;
     public List<Cargo> getAllCargos() {
     	List<Cargo> a = cargoRepository.findAll() ;
         System.out.println(a);
         return a;
 	}
+
+    public Cargo save(Cargo cargo){
+        System.out.println(cargo);
+        return cargoRepository.save(cargo);
+    }
 }
