@@ -12,15 +12,16 @@ public class Cargo {
     private String id;
 
     private String name;
+
     private float temperature;
     private float humidity;
     private String driver;
     private boolean notify;
 
-    public Cargo(String id, String name, float temperature, float humidity, String driver, boolean notify){
+    public Cargo(String name, float temperature, float humidity, String driver, boolean notify){
         super();
-        this.id = id;
         this.name = name;
+        this.id = name;
         this.temperature = temperature;
         this.humidity = humidity;
         this.driver = driver;
