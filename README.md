@@ -8,4 +8,4 @@ The backend server that connects with Mongodb and handles all communications wit
 A front-end website that helps visualize all cargos' conditions for overseers. Developed using React.js
 
 # Driver Dashboard:
-Display a cargo's condition data on truck driver's screen. Developed using Qt5. Conditions are updated to Mongodb in real-time and update is developed using Python and flask
+Display a cargo's condition data on truck driver's screen. Developed using Qt5. Conditions are updated to Mongodb in real-time and the update part is developed using Python and flask
