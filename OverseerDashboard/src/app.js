@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Table from './table.js'
 
 /**
- * id:int
+ * id:string
  * name:string
  * temperature:float
  * humidity:float
@@ -11,7 +11,7 @@ import Table from './table.js'
  */
 
 class App extends Component {
-	// TODO: Remove hard-coded values
+	// TODO: Remove hard-coded values. Should fetch values from server
 	state = {
 		cargo: [{
 			id: '12345',
