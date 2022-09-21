@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './header';
-import Body from './body';
+import Header from './header.js';
+import Body from './body.js';
 
 
 /**
