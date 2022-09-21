@@ -1,0 +1,1 @@
+We put our data fetchings in this folder and then call it inside the components
