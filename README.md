@@ -3,6 +3,8 @@ A project that helps track temperature and humidity of cargos on trucks
 
 # CentralServer:
 The backend server that connects with Mongodb and handles all communications with overseer dashboard. Developed using Java and Spring Boot
+Gradle Version: 7.5.1
+Java Version: 18.0.2.1
 
 # OverseerDashboard:
 A front-end website that helps visualize all cargos' conditions for overseers. Developed using React.js
