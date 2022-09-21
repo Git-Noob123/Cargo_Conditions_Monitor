@@ -13,21 +13,10 @@ import Table from './table.js'
 class App extends Component {
 	// TODO: Remove hard-coded values. Should fetch values from server
 	state = {
-		cargo: [{
-			id: '12345',
-			name: 'Product 1',
-			temperature: 15.5,
-			humidity: 20.2,
-			driver: 'Doe, John',
-			notification: false
-		},{
-			id: '67890',
-			name: 'Product 2',
-			temperature: 10.1,
-			humidity: 14.0,
-			driver: "Doe, Jane",
-			notification: true
-		}]
+		cargo: [
+			{ id: '12345', name: 'Product 1', temperature: 15.5, humidity: 20.2, driver: 'Doe, John', notification: false },
+			{ id: '67890', name: 'Product 2', temperature: 10.1, humidity: 14.0, driver: 'Doe, Jane', notification: true  },
+		]
 	}
 
 	render() {
