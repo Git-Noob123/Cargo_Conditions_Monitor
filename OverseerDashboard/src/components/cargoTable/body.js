@@ -1,8 +1,36 @@
 import React from "react";
+/**
+ * id:int
+ * name:string
+ * temperature:float
+ * humidity:float
+ * driver:string
+ * notification:bool
 
-const Body = (cargoData) => {
-	// console.log(cargoData);
-	let data = cargoData.map((row, index) => {
+ * We fetch our data here inside this body component
+ * @returns the body of the table
+ */
+const Body = () => {
+	const state = 
+			[{
+			id: '12345',
+			name: 'Product 1',
+			temperature: 15.5,
+			humidity: 20.2,
+			driver: 'Doe, John',
+			notification: false
+		},{
+			id: '67890',
+			name: 'Product 2',
+			temperature: 10.1,
+			humidity: 14.0,
+			driver: "Doe, Jane",
+			notification: true
+		}]
+	;
+
+
+	let data = state.map((row, index) => {
 	
 		return <tr key={index}>
 				<td>{row.id}</td>
@@ -14,7 +42,7 @@ const Body = (cargoData) => {
 			</tr>
 		
 	})
-
+	
 	return (<tbody>{data}</tbody>);
 }
 

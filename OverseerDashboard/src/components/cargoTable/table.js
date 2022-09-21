@@ -1,13 +1,17 @@
 import React from 'react'
 import Header from './header';
 import Body from './body';
-const Table = (cargoData) => {
-	// const {cargoData} = props;
-	console.log(cargoData);
+
+
+/**
+ * Our Table component, a collection of header and body
+ * 
+ */
+const Table = () => {
 	return (
 		<table>
 			<Header />
-			<Body cargoData={cargoData} />
+			<Body/>
 		</table>
 	)
 }
