@@ -1,4 +1,7 @@
 import React from "react"
+import axios from "axios"
+
+const fetchURL = 'localhost:5050/Api/Cargos'
 
 /**
  * id:int
@@ -7,7 +10,9 @@ import React from "react"
  * humidity:float
  * driver:string
  * notification:bool
+ */
 
+/**
  * We fetch our data here inside this body component
  * @returns the body of the table
  */
@@ -18,7 +23,7 @@ const Body = () => {
 	]
 
 	let data = state.map((row, index) => {
-		return <tr>
+		return <tr key={index}>
 				<td>{row.id}</td>
 				<td>{row.name}</td>
 				<td>{row.temperature}</td>
@@ -27,6 +32,13 @@ const Body = () => {
 				<td>{row.notification ? "Yes" : "No"}</td>
 			</tr>
 	})
+
+	React.componentDidMount = () => {
+		axios.get(fetchURL).then(response => {
+			const cargoRes = response.data
+			this.setState({cargoRes})
+		})
+	}
 
 	return (<tbody>{data}</tbody>);
 }
