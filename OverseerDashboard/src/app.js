@@ -5,10 +5,10 @@ import MainApp from "./main_app.js"
  * This level is for global stylings and some general settings, such as queryClientProvider
  * 
  */
-function App() {
+const App = (data) => {
 	return (
-		<MainApp/>
+		<MainApp data={data.data}/>
 	);
 }
 
-export default App;
+export default App

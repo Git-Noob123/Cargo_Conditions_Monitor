@@ -4,6 +4,7 @@ const Header = () => {
 	return (
 		<thead>
 			<tr>
+				<th>#</th>
 				<th>ID</th>
 				<th>Name</th>
 				<th>Temperature</th>

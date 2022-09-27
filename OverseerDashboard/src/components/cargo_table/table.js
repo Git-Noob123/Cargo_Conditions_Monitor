@@ -5,11 +5,11 @@ import Body from "./body.js"
 /**
  * Our Table component, a collection of header and body
  */
-const Table = () => {
+const Table = (data) => {
 	return (
 		<table>
 			<Header/>
-			<Body/>
+			<Body data={data.data}/>
 		</table>
 	)
 }
