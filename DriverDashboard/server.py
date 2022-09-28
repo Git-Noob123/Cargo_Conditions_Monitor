@@ -151,7 +151,7 @@ def server_program():
         print(together)
         #data = input(' -> ')
         conn.send(together.encode())  # send data to the client
-        idnum=str('driver_'+str(i)) # _id should not be the same
+        idnum=str('data_'+str(i)) # _id should not be the same
         name=idnum
         driver=str('Mike')
         #print(note)
