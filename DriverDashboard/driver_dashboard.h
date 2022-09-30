@@ -36,7 +36,7 @@ public slots:
     void normalHumi();
 
     void receiveData();
-    void sendEnmergency();
+    void sendEmergency();
     void sendNothing();
 
 signals:

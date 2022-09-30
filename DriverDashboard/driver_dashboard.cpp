@@ -12,7 +12,7 @@ Dashboard::Dashboard(QWidget *parent) : QWidget(parent){
 
     btn=new QPushButton;
     btn->setParent(this);
-    btn->setText("Enmergency");
+    btn->setText("Emergency");
     btn->resize(100,80);
     btn->move(300,400);
 
@@ -33,7 +33,7 @@ Dashboard::Dashboard(QWidget *parent) : QWidget(parent){
 
 }
 
-void Dashboard::sendEnmergency(){
+void Dashboard::sendEmergency(){
     tcpSocket->write("emergency happened");
 }
 

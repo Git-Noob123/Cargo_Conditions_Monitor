@@ -138,9 +138,7 @@ def server_program():
         print(together,note)
         conn.send(together.encode())  # send data to the client
         data=conn.recv(2048).decode()  # receive data stream. it won't accept data packet greater than 2048 bytes
-        #print(data)
-        if data=="enmergency happened.":
-            #print("yeahhh")
+        if data.find("emergency happened")!=-1:
             note=True
         refreshDatabase(temp,humi,note)
     conn.close()  # close the connection

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     this->dashboard=new Dashboard;
 
     dashboard->setParent(this);
-    connect(dashboard->btn,SIGNAL(clicked()),dashboard,SLOT(sendEnmergency()));
+    connect(dashboard->btn,SIGNAL(clicked()),dashboard,SLOT(sendEmergency()));
     connect(dashboard,SIGNAL(EnTemp()),dashboard,SLOT(tempEmergency()));
     connect(dashboard,SIGNAL(EnHumi()),dashboard,SLOT(humiEmergency()));
     connect(dashboard,SIGNAL(goodtemp()),dashboard,SLOT(normalTemp()));
