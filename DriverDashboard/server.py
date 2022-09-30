@@ -5,7 +5,7 @@ import random
 import time
 from turtle import update
 import pymongo
-#from pymongo import MongoClient
+
 
 
 templow=20
