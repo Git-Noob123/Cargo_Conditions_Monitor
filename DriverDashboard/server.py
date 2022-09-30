@@ -3,41 +3,35 @@ from re import T
 import socket
 import random
 import time
-#from unittest import result
+from turtle import update
 import pymongo
 #from pymongo import MongoClient
-#
-#Cargo 
-#{
-#  id:string(same value as name)
-#  name:string
-#  temperature:float
-#  humidity:float
-#  driver:string
-#  notification:bool
-#}
+
 
 templow=20
 temphigh=40
 humilow=40
 humihigh=70
 
-myclient = pymongo.MongoClient("mongodb://localhost:2000/")#连接的URL地址
+myclient = pymongo.MongoClient("mongodb://localhost:2000/")# the address of url
 mydb = myclient["cargos"] #the name of database
-collection = mydb['cargo']  
+collection = mydb['cargo'] 
 
-def sendToDatabase(idnum,name,temp,humi,driver,note):
-    #mydb.cargo.drop()
+
+def insertOneData():
     cargo=({       
-        '_id':idnum,   #_id should not be the same
-        'name':name,
-        'temperature':temp,
-        'humidity':humi,
-        'driver':driver,
-        'notification':note
+        '_id':'driver_0',   #_id should not be the same
+        'name':'cargo_0',
+        'temperature':float(0),
+        'humidity':float(0),
+        'driver':'Mike',
+        'notify':False
     })
     result=collection.insert_one(cargo)
-    print(result)
+
+def refreshDatabase(temp,humi,note):
+    print(temp,humi,note,"in function")
+    res=collection.update_one(filter={'driver':'Mike'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})   
 
 def getTemp():    #always save 5 digit result (including the dot and the negative sign), such as 3.245, 23.52, -12,4
     numforP=random.uniform(0,4)
@@ -120,47 +114,38 @@ def server_program():
     ip=socket.gethostbyaddr(host)
     print(ip)
 
-    port = 5000  # initiate port no above 1024
+    port = 5000  # initiate port number above 1024
 
     server_socket = socket.socket()  # get instance
     # look closely. The bind() function takes tuple as argument
-    server_socket.bind((host, port))  # bind host address and port together
-
+    server_socket.bind(("localhost", port))  # '''host'''bind host address and port together
+                        
     # configure how many client the server can listen simultaneously
     server_socket.listen(10)
     conn, address = server_socket.accept()  # accept new connection
     print("Connection from: " + str(address))
     
-    i=0
-    while True:
-        # receive data stream. it won't accept data packet greater than 1024 bytes
-        #data = conn.recv(2048).decode()
+    while True:         
         temp=getTemp()
         humi=getHumi()
         note=False
-        if(temp<templow or temp>temphigh or humi<humilow or humi>humihigh):
-            note=True
-        Tempnum = str(getTemp())
-        Huminum = str(getHumi())
+        #if temp<templow or temp>temphigh or humi<humilow or humi>humihigh:
+            #note=True   #note is used in sendToDatabase() function
+        Tempnum = str(temp)
+        Huminum = str(humi)
         together=Tempnum+","+Huminum
-        time.sleep(1.0)
-        #if not data:
-            #if data is not received break
-           #break
-        #print("from connected user: " + str(data))
-        print(together)
-        #data = input(' -> ')
+        time.sleep(5.0)  #send data to client every 5 second
+        print(together,note)
         conn.send(together.encode())  # send data to the client
-        idnum=str('data_'+str(i)) # _id should not be the same
-        name=idnum
-        driver=str('Mike')
-        #print(note)
-        sendToDatabase(idnum,name,temp,humi,driver,note)
-        i=i+1
-
+        data=conn.recv(2048).decode()  # receive data stream. it won't accept data packet greater than 2048 bytes
+        #print(data)
+        if data=="enmergency happened.":
+            #print("yeahhh")
+            note=True
+        refreshDatabase(temp,humi,note)
     conn.close()  # close the connection
 
 
 if __name__ == '__main__':
-    #mydb.cargo.drop()    
+    insertOneData()
     server_program()
