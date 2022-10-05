@@ -12,19 +12,25 @@ const EMPTY_DATA = [{
 }]
 
 const CargoDataFetcher = () => {
-	// TODO: Fix cargoData being undefined
-	const [cargoData, setCargoData] = useState(EMPTY_DATA)
+	// TODO: Fix cargo being undefined
+	const [cargo, setCargo] = useState(EMPTY_DATA)
 
-	useEffect(() => {
-		axios.get(getURL)
-			.then((response) => {
-				setCargoData(response.data)
-			})
-			.catch((error) => {
-				console.log(error)
-				setCargoData(EMPTY_DATA)
-			})
-	})
+	useEffect = () => {
+		setInterval(() => {
+			axios.get(getURL)
+				.then((response) => {
+					setCargo(response.data)
+				})
+				.catch((error) => {
+					console.log(error)
+					setCargo(EMPTY_DATA)
+				})
+		}, 1000) // TODO: Set back to 5000ms
+	}
+
+	return(
+		{cargo}
+	)
 }
 
 export default CargoDataFetcher

@@ -1,14 +1,16 @@
 import React from "react"
 
+import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
+
 /**
  * We fetch our data here inside this body component
  * @return the body of the table
  */
-const Body = (data) => {
+const Body = () => {
+	const data = CargoDataFetcher // TODO: Get data from CargoDataFetcher
 	console.log(data) // TODO: Remove debug line
-	const state = data.data
 
-	let bodyData = state.map((row, index) => {
+	let bodyData = data.map((row, index) => {
 		return (
 			<tr key={index}>
 				<td>{index}</td>
@@ -29,4 +31,4 @@ const Body = (data) => {
 	)
 }
 
-export default Body;
+export default Body
