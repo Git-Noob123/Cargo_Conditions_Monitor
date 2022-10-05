@@ -11,14 +11,17 @@ const EMPTY_DATA = [{
 }]
 
 const CargoDataFetcher = () => {
+	var cargo
 	axios.get(getURL)
 		.then((response) => {
-			return (response.data)
+			cargo = response.data
 		})
 		.catch((error) => {
 			console.log(error)
-			return (EMPTY_DATA)
+			cargo = EMPTY_DATA
 		})
+	console.log(cargo)
+	return cargo
 }
 
 export default CargoDataFetcher
