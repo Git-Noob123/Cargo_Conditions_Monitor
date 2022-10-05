@@ -4,7 +4,6 @@
 #include <QtWidgets>
 #include <QMainWindow>
 #include "driver_dashboard.h"
-#include "data_generator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -18,15 +18,7 @@ public:
     QLabel* humidity;
     QLineEdit* showtemperature;
     QLineEdit* showhumidity;
-    QLabel* tl;
-    QLabel* th;
-    QLabel* hl;
-    QLabel* hh;
-    QLineEdit* itl;
-    QLineEdit* ith;
-    QLineEdit* ihl;
-    QLineEdit* ihh;
-
+    QPushButton* btn;
 
     QTimer *timer;
 
@@ -43,15 +35,9 @@ public slots:
     void normalTemp();
     void normalHumi();
 
-    /*void tempLow();
-    void tempHigh();
-    void HumiLow();
-    void HumiHigh();
-
-    void checkall();*/
-
     void receiveData();
-
+    void sendEmergency();
+    void sendNothing();
 
 signals:
     void TempData(double tempnum);
@@ -62,27 +48,11 @@ signals:
     void goodtemp();
     void goodhumi();
 
-    //void allgood();
 
 
 private:
     QTcpSocket *tcpSocket;
-    /*double templ;
-    double temph;
-    double humil;
-    double humih;
-    bool inputtl;
-    bool inputth;
-    bool inputhl;
-    bool inputhh;*/
-
 };
-
-
-
-
-
-
 
 
 #endif // DRIVER_DASHBOARD_H
