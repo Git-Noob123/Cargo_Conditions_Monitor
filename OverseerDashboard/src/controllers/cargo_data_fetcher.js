@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react";
 import axios from "axios"
 
 const getURL = "http://localhost:5050/Api/Cargos"
@@ -12,25 +11,14 @@ const EMPTY_DATA = [{
 }]
 
 const CargoDataFetcher = () => {
-	// TODO: Fix cargo being undefined
-	const [cargo, setCargo] = useState(EMPTY_DATA)
-
-	useEffect = () => {
-		setInterval(() => {
-			axios.get(getURL)
-				.then((response) => {
-					setCargo(response.data)
-				})
-				.catch((error) => {
-					console.log(error)
-					setCargo(EMPTY_DATA)
-				})
-		}, 1000) // TODO: Set back to 5000ms
-	}
-
-	return(
-		{cargo}
-	)
+	axios.get(getURL)
+		.then((response) => {
+			return (response.data)
+		})
+		.catch((error) => {
+			console.log(error)
+			return (EMPTY_DATA)
+		})
 }
 
 export default CargoDataFetcher

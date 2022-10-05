@@ -1,4 +1,5 @@
 import React from "react"
+import {useEffect, useState} from "react";
 
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
 
@@ -7,10 +8,17 @@ import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
  * @return the body of the table
  */
 const Body = () => {
-	const data = CargoDataFetcher // TODO: Get data from CargoDataFetcher
-	console.log(data) // TODO: Remove debug line
+	const [cargo, setCargo] = useState({})
 
-	let bodyData = data.map((row, index) => {
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCargo(CargoDataFetcher())
+		}, 5000)
+
+		return () => clearInterval(interval)
+	}, [])
+
+	let bodyData = cargo.map((row, index) => {
 		return (
 			<tr key={index}>
 				<td>{index}</td>
