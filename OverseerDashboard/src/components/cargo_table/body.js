@@ -1,7 +1,8 @@
-import React from "react"
-import {useEffect, useState} from "react";
-import axios from "axios"
-const getURL = "http://localhost:5050/Api/Cargos"
+import React, {useEffect, useState} from "react"
+
+import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
+
+// Default JSON array for when data fetching fails
 const EMPTY_DATA = [{
 	"id":"n/a",
 	"name":"n/a",
@@ -11,17 +12,23 @@ const EMPTY_DATA = [{
 	"notification":false
 }]
 
-//import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
-
 /**
  * We fetch our data here inside this body component
  * @return the body of the table
  */
 const Body = () => {
+	// Set up hooks
 	const [cargo, setCargo] = useState([])
+	useEffect(() => {
+		const interval = setInterval(() => {
+			handleFetch()
+		}, 5000)
+		return () => clearInterval(interval)
+	}, [])
 
-	const CargoDataFetcher = () => {
-		axios.get(getURL)
+	// Handle fetched data
+	const handleFetch = () => {
+		CargoDataFetcher()
 			.then((response) => {
 				setCargo(response.data)
 			})
@@ -31,19 +38,16 @@ const Body = () => {
 			})
 	}
 
-	CargoDataFetcher()
-	useEffect(() => {
-		const interval = setInterval(() => {
-			CargoDataFetcher()
-		}, 5000)
-
-		return () => clearInterval(interval)
-	}, [])
-
+	// Fetch data immediately on page load
 	if (cargo.length === 0) {
 		setCargo(EMPTY_DATA)
 	}
-	let bodyData = cargo.map((row, index) => {
+	else {
+		handleFetch()
+	}
+
+	// Map cargo JSON array to table body
+	const bodyData = cargo.map((row, index) => {
 		return (
 			<tr key={index}>
 				<td>{index}</td>
@@ -57,6 +61,7 @@ const Body = () => {
 		)
 	})
 
+	// Return formatted body
 	return(
 		<tbody>
 			{bodyData}

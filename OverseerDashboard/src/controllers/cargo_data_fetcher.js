@@ -1,38 +1,7 @@
 import axios from "axios"
 
-const getURL = "http://localhost:5050/Api/Cargos"
-const EMPTY_DATA = [{
-	"id":"n/a",
-	"name":"n/a",
-	"temperature":0,
-	"humidity":0,
-	"driver":"n/a",
-	"notification":false
-}]
-
-const CargoDataFetcher = () => {
-	var cargo
-	axios.get(getURL)
-		.then((response) => {
-			cargo = response.data
-		})
-		.catch((error) => {
-			console.log(error)
-			cargo = EMPTY_DATA
-		})
-	console.log(cargo)
-	return cargo
+const CargoDataFetcher = async () => {
+	return await axios.get("http://localhost:5050/Api/Cargos")
 }
 
 export default CargoDataFetcher
-
-/**
- * DATA FORMAT:
- *
- * id:int
- * name:string
- * temperature:float
- * humidity:float
- * driver:string
- * notification:bool
- */
