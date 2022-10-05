@@ -5,6 +5,7 @@ import React from "react"
  * @return the body of the table
  */
 const Body = (data) => {
+	console.log(data) // TODO: Remove debug line
 	const state = data.data
 
 	let bodyData = state.map((row, index) => {
