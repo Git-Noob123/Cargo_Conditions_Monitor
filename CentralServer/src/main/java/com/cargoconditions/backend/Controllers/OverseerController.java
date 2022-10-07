@@ -1,7 +1,5 @@
 package com.cargoconditions.backend.Controllers;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,7 +14,7 @@ import com.cargoconditions.backend.Services.OverseerService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/Api/OverseerLogin")
+@RequestMapping("/Api/Overseers/Login")
 @AllArgsConstructor
 public class OverseerController {
     private OverseerService overseerService;
@@ -27,7 +25,6 @@ public class OverseerController {
 
 	@PostMapping
 	public Boolean validate(@RequestBody Overseer overseer){
-		// System.out.println(overseer);
 		Boolean correct = overseerService.validate(overseer);
 		if(correct){
 			throw new ResponseStatusException(HttpStatus.ACCEPTED, "Validated");
