@@ -56,7 +56,7 @@ const Body = () => {
 				<td>{row.temperature}</td>
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
-				<td>{row.notification ? "Yes" : "No"}</td>
+				<td>{row.notify ? "Yes" : "No"}</td>
 			</tr>
 		)
 	})
