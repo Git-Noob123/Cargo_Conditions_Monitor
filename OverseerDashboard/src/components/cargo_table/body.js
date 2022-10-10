@@ -9,7 +9,7 @@ const EMPTY_DATA = [{
 	"temperature":0,
 	"humidity":0,
 	"driver":"n/a",
-	"notification":false
+	"notify":false
 }]
 
 /**
