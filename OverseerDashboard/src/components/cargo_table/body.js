@@ -16,7 +16,7 @@ const EMPTY_DATA = [{
  * We fetch our data here inside this body component
  * @return the body of the table
  */
-const Body = () => {
+const DataBody = () => {
 	// Set up hooks
 	const [cargo, setCargo] = useState([])
 	useEffect(() => {
@@ -69,4 +69,4 @@ const Body = () => {
 	)
 }
 
-export default Body
+export default DataBody

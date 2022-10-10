@@ -1,18 +1,18 @@
 import React from "react"
 
-import Header from "./header.js"
-import Body from "./body.js"
+import DataHead from "./head.js"
+import DataBody from "./body.js"
 
 /**
  * Our Table component, a collection of header and body
  */
-const Table = () => {
+const DataTable = () => {
 	return (
 		<table>
-			<Header/>
-			<Body/>
+			<DataHead/>
+			<DataBody/>
 		</table>
 	)
 }
 
-export default Table
+export default DataTable

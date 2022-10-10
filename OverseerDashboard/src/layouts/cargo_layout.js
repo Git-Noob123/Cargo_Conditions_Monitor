@@ -1,6 +1,7 @@
 import React from "react"
 
-import Table from "../components/cargo_table/table.js"
+import DataTable from "../components/cargo_table/table.js"
+import ThreshTable from "../components/thresh_table/table.js"
 
 /**
  * Layout level is a collection of components, each layout file is a part we see on webpage.
@@ -10,7 +11,12 @@ const CargoLayout = () => {
 	return (
 		<div className="container">
 				<h1>Welcome, Overseer!</h1>
-				<Table/>
+
+				<h2>Set Thresholds</h2>
+				<ThreshTable/>
+
+				<h2>Data</h2>
+				<DataTable/>
 		</div>
 	)
 }
