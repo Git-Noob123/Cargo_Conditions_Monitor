@@ -16,7 +16,7 @@ const EMPTY_DATA = [{
  * We fetch our data here inside this body component
  * @return the body of the table
  */
-const DataBody = () => {
+const CargoBody = () => {
 	// Set up hooks
 	const [cargo, setCargo] = useState([])
 	useEffect(() => {
@@ -57,16 +57,25 @@ const DataBody = () => {
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
 				<td>{row.notify ? "Yes" : "No"}</td>
+				<td>
+					<input type="float" />
+				</td>
+				<td>
+					<input type="float" />
+				</td>
+				<td>
+					<button>Update #{index}</button>
+				</td>
 			</tr>
 		)
 	})
 
 	// Return formatted body
-	return(
+	return (
 		<tbody>
 			{bodyData}
 		</tbody>
 	)
 }
 
-export default DataBody
+export default CargoBody

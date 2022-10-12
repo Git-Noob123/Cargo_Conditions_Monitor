@@ -1,6 +1,6 @@
 import React from "react"
 
-const DataHead = () => {
+const CargoHead = () => {
 	return (
 		<thead>
 			<tr>
@@ -11,9 +11,12 @@ const DataHead = () => {
 				<th>Humidity</th>
 				<th>Driver</th>
 				<th>Notification</th>
+				<th>Temp. Threshold (Low)</th>
+				<th>Temp. Threshold (High)</th>
+				<th>Submit</th>
 			</tr>
 		</thead>
 	)
 }
 
-export default DataHead
+export default CargoHead
