@@ -18,11 +18,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class OverseerController {
     private OverseerService overseerService;
+
+	/**
+	 * Put a new overseer's login information to a table in db
+	 * @param overseer
+	 * @return the saved overseer
+	 */
 	@PutMapping
 	public Overseer createOverseer(@RequestBody Overseer overseer) {
 		return overseerService.save(overseer);
 	}
 
+	/**
+	 * Validate a user's username and password
+	 * @param overseer username and password for an overseer
+	 * @return accepted or not acceptable
+	 */
 	@PostMapping
 	public Boolean validate(@RequestBody Overseer overseer){
 		Boolean correct = overseerService.validate(overseer);

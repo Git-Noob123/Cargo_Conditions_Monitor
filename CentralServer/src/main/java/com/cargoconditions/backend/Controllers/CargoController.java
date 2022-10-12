@@ -23,18 +23,32 @@ import java.util.List;
 @AllArgsConstructor
 public class CargoController {
     private CargoService cargoService;
+	/**
+	 * Get specific overseers' cargos
+	 * @param overseer: name of the overseer, in string
+	 * @return That overseer's cargos
+	 */
 	@GetMapping
 	public List<Cargo> getOverseerCargos(@RequestParam(required = false) String overseer) {
 		if(overseer==null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid overseer name");
     	return cargoService.getOverseerCargos(overseer);
 	}
 
+	/**
+	 * Put a new cargo in database
+	 * @param cargo: New cargo that needs to set in db
+	 */
 	@PutMapping
 	public Cargo createCargo(@RequestBody Cargo cargo) {
 		return cargoService.save(cargo);
 	}
 
-	
+	/**
+	 * Update thresholds for specific cargo
+	 * @param id: Id of the cargo
+	 * @param tempThreshHigh: High threshold for temperature
+	 * @param tempThreshLow: Low threshold for temperature
+	 */
 	@PatchMapping
 	public void setThresholds(@RequestBody Cargo cargo){
 		if(cargoService.setThresholds(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow())){

@@ -14,13 +14,11 @@ import java.util.Optional;
 public class CargoService {
     private CargoRepository cargoRepository;
     public List<Cargo> getOverseerCargos(String overseer) {
-        // System.out.println(overseer);
     	List<Cargo> a = cargoRepository.findAllByOverseer(overseer) ;
         return a;
 	}
 
     public Cargo save(Cargo cargo){
-        // System.out.println(cargo);
         return cargoRepository.save(cargo);
     }
 
