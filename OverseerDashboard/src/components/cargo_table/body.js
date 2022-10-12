@@ -9,7 +9,7 @@ const EMPTY_DATA = [{
 	"temperature":0,
 	"humidity":0,
 	"driver":"n/a",
-	"notification":false
+	"notify":false
 }]
 
 /**
@@ -56,7 +56,7 @@ const Body = () => {
 				<td>{row.temperature}</td>
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
-				<td>{row.notification ? "Yes" : "No"}</td>
+				<td>{row.notify ? "Yes" : "No"}</td>
 			</tr>
 		)
 	})
