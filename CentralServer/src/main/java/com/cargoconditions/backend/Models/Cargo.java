@@ -18,7 +18,9 @@ public class Cargo {
     private String driver;
     private boolean notify;
 
-    public Cargo(String name, float temperature, float humidity, String driver, boolean notify){
+    private float tempThreshLow;
+    private float tempThreshHigh;
+    public Cargo(String name, float temperature, float humidity, String driver, boolean notify, float tempThreshLow, float tempThreshHigh){
         super();
         this.name = name;
         this.id = name;
@@ -26,5 +28,7 @@ public class Cargo {
         this.humidity = humidity;
         this.driver = driver;
         this.notify = notify;
+        this.tempThreshLow = tempThreshLow;
+        this.tempThreshHigh = tempThreshHigh;
     }
 }
