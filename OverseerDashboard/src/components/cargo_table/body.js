@@ -9,15 +9,22 @@ const EMPTY_DATA = [{
 	"temperature":0,
 	"humidity":0,
 	"driver":"n/a",
-	"notify":false
+	"notify":false,
+	"tempThreshLow":0,
+	"tempThreshHigh":0
 }]
+
+// Threshold text box settings
+const STEP = 0.1 // Amount that the number in the text box inc/decrements
+const INPUT_BOX_STYLE = { "width":"50px" }
 
 /**
  * We fetch our data here inside this body component
  * @return the body of the table
  */
+// TODO: Prevent component from rendering so often. Currently, CargoBody renders as often as possible when it should render only when *new* data has been fetched
 const CargoBody = () => {
-	// Set up hooks
+	// Set up cargo data
 	const [cargo, setCargo] = useState([])
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -47,6 +54,7 @@ const CargoBody = () => {
 	}
 
 	// Map cargo JSON array to table body
+	// TODO: Handle threshold inputs on button click (PUT request)
 	const bodyData = cargo.map((row, index) => {
 		return (
 			<tr key={index}>
@@ -57,12 +65,16 @@ const CargoBody = () => {
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
 				<td>{row.notify ? "Yes" : "No"}</td>
-				<td>
-					<input type="float" />
-				</td>
-				<td>
-					<input type="float" />
-				</td>
+				<td><input
+					style={INPUT_BOX_STYLE}
+					step={STEP}
+					type="number"
+				/></td>
+				<td><input
+					style={INPUT_BOX_STYLE}
+					step={STEP}
+					type="number"
+				/></td>
 				<td>
 					<button>Update #{index}</button>
 				</td>
