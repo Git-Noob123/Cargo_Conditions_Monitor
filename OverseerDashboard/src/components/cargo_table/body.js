@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
+import axios from "axios"
 
-import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
+import CargoDataFetcher from "../../controllers/cargo_data_fetcher.js"
 
 // Default JSON array for when data fetching fails
 const EMPTY_DATA = [{
@@ -33,6 +34,9 @@ const CargoBody = () => {
 		return () => clearInterval(interval)
 	}, [])
 
+	const [tempThreshLow, setTempThreshLow] = useState(0)
+	const [tempThreshHigh, setTempThreshHigh] = useState(0)
+
 	// Handle fetched data
 	const handleFetch = () => {
 		CargoDataFetcher()
@@ -45,6 +49,26 @@ const CargoBody = () => {
 			})
 	}
 
+	// Handle changed thresholds
+	// TODO (urgent): Does not upload. "Blocked by CORS policy"
+	// TODO: Handle when either or both are blank
+	const handleUpload = name => {
+		axios.put("http://localhost:5050/Api/Cargos", {
+			"id":{name},
+			"tempThreshLow":{tempThreshLow},
+			"tempThreshHigh":{tempThreshHigh}
+		})
+			.catch((error) => {
+				console.log(error)
+			})
+	}
+	const handleTempThreshLow = event => {
+		setTempThreshLow(event.target.value)
+	}
+	const handleTempThreshHigh = event => {
+		setTempThreshHigh(event.target.value)
+	}
+
 	// Fetch data immediately on page load
 	if (cargo.length === 0) {
 		setCargo(EMPTY_DATA)
@@ -54,7 +78,8 @@ const CargoBody = () => {
 	}
 
 	// Map cargo JSON array to table body
-	// TODO: Handle threshold inputs on button click (PUT request)
+	// TODO: Make current thresholds display inside the textbox
+	// TODO (urgent) - Major problem if upload happens after thresholds from different rows are changed
 	const bodyData = cargo.map((row, index) => {
 		return (
 			<tr key={index}>
@@ -65,18 +90,28 @@ const CargoBody = () => {
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
 				<td>{row.notify ? "Yes" : "No"}</td>
-				<td><input
-					style={INPUT_BOX_STYLE}
-					step={STEP}
-					type="number"
-				/></td>
-				<td><input
-					style={INPUT_BOX_STYLE}
-					step={STEP}
-					type="number"
-				/></td>
 				<td>
-					<button>Update #{index}</button>
+					<input
+						style={INPUT_BOX_STYLE}
+						step={STEP}
+						type="number"
+						onChange={handleTempThreshLow}
+					/>
+					(curr: {row.tempThreshLow})
+				</td>
+				<td>
+					<input
+						style={INPUT_BOX_STYLE}
+						step={STEP}
+						type="number"
+						onChange={handleTempThreshHigh}
+					/>
+					(curr: {row.tempThreshHigh})
+				</td>
+				<td>
+					<button onClick={() => handleUpload(row.name)}>
+						Update #{index}
+					</button>
 				</td>
 			</tr>
 		)
