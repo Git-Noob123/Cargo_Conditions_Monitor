@@ -1,4 +1,5 @@
 import React from "react"
+import { BrowserRouter } from "react-router-dom"
 
 import MainApp from "./main_app.js"
 
@@ -8,7 +9,9 @@ import MainApp from "./main_app.js"
  */
 const App = () => {
 	return (
-		<MainApp/>
+		<BrowserRouter>
+				<MainApp/>
+		</BrowserRouter>
 	)
 }
 
