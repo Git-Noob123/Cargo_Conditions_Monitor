@@ -1,14 +1,12 @@
 import React from "react"
 /**
- * Our Table component, a collection of header and body
+ * Login page
  */
 const LoginForm = () => {
 	return (
-		// <table>
-		// 	<Header/>
-		// 	<Body/>
-		// </table>
-        <></>
+		<h1>
+			This is a login page
+		</h1>
 	)
 }
 
