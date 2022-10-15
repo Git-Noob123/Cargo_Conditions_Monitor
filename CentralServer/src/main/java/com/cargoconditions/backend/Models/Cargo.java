@@ -20,7 +20,10 @@ public class Cargo {
 
     private float tempThreshLow;
     private float tempThreshHigh;
-    public Cargo(String name, float temperature, float humidity, String driver, boolean notify, float tempThreshLow, float tempThreshHigh){
+
+    private String overseer;
+    
+    public Cargo(String name, float temperature, float humidity, String driver, boolean notify, float tempThreshLow, float tempThreshHigh, String overseer){
         super();
         this.name = name;
         this.id = name;
@@ -30,5 +33,6 @@ public class Cargo {
         this.notify = notify;
         this.tempThreshLow = tempThreshLow;
         this.tempThreshHigh = tempThreshHigh;
+        this.overseer = overseer;
     }
 }
