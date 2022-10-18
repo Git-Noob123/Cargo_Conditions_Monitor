@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Button, TextField, Box } from "@mui/material"
 import VerifyLogin from "../controllers/submit_login_info";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../main_app";
 /**
  * Login page
  */
@@ -10,6 +11,9 @@ const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();
+	const {setCurrUser, setLoggedIn } = useContext(LoginContext);
+
+
 	const handleSubmit = ()=>{
 		const payload = {
 			"username" : username,
@@ -18,9 +22,13 @@ const LoginForm = () => {
 		VerifyLogin(payload)
 		.then((response) => {
 			navigate('/cargos');
+			setCurrUser(username);
+			setLoggedIn(true);
 		})
 		.catch((error) => {
 			setError(true);
+			setLoggedIn(false);
+			setCurrUser("");
 		})
 	}
 
