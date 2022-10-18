@@ -5,7 +5,6 @@ const CargoHead = () => {
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>ID</th>
 				<th>Name</th>
 				<th>Temperature</th>
 				<th>Humidity</th>

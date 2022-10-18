@@ -58,7 +58,6 @@ const CargoBody = () => {
 		return (
 			<tr key={index}>
 				<td>{index}</td>
-				<td>{row.id}</td>
 				<td>{row.name}</td>
 				<td>{row.temperature}</td>
 				<td>{row.humidity}</td>
