@@ -1,7 +1,8 @@
 import axios from "axios"
 
-const CargoDataFetcher = async () => {
-	return await axios.get("http://localhost:5050/Api/Cargos")
+const CargoDataFetcher = async (username) => {
+	let url = "http://localhost:5050/Api/Cargos?overseer="+username;
+	return await axios.get(url);
 }
 
 export default CargoDataFetcher

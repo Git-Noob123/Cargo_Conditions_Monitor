@@ -11,9 +11,6 @@ const CargoHead = () => {
 				<th>Humidity</th>
 				<th>Driver</th>
 				<th>Notification</th>
-				<th>Temp. Threshold (Low)</th>
-				<th>Temp. Threshold (High)</th>
-				<th>Submit</th>
 			</tr>
 		</thead>
 	)
