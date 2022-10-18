@@ -1,6 +1,7 @@
 package com.cargoconditions.backend.Controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/Api/Overseers/Login")
 @AllArgsConstructor
+@CrossOrigin
 public class OverseerController {
     private OverseerService overseerService;
 
@@ -38,10 +40,10 @@ public class OverseerController {
 	public Boolean validate(@RequestBody Overseer overseer){
 		Boolean correct = overseerService.validate(overseer);
 		if(correct){
-			throw new ResponseStatusException(HttpStatus.ACCEPTED, "Validated");
+			throw new ResponseStatusException(HttpStatus.OK, "Validated");
 		}
 		else{
-			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "User not found");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
 		}
 	}
 }

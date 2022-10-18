@@ -1,12 +1,13 @@
 import React from "react"
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import { LoginContext } from "../main_app";
 const NavBar = ()=>{
     const navigate = useNavigate();
+    const {setCurrUser, setLoggedIn} = useContext(LoginContext)
     return (
     <AppBar 
         position="static"
@@ -21,6 +22,8 @@ const NavBar = ()=>{
             </Button>
             <Button color="inherit"
                     onClick = {()=>{
+                        setCurrUser("")
+                        setLoggedIn(false)
                         navigate('/login');
                     }} 
             > 
