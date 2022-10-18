@@ -10,6 +10,8 @@ const CargoHead = () => {
 				<th>Humidity</th>
 				<th>Driver</th>
 				<th>Notification</th>
+				<th>Temp. Thresh Low</th>
+				<th>Temp. Thresh High</th>
 			</tr>
 		</thead>
 	)

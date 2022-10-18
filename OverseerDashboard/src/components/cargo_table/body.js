@@ -33,7 +33,7 @@ const CargoBody = () => {
 				console.log(error)
 				setCargo(EMPTY_DATA)
 			})
-	}, [currUser]);
+	}, [currUser])
 
 	// Fetch data immediately on page load
 	useEffect(() => {
@@ -63,6 +63,8 @@ const CargoBody = () => {
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
 				<td>{row.notify ? "Yes" : "No"}</td>
+				<td>{row.tempThreshLow}</td>
+				<td>{row.tempThreshHigh}</td>
 			</tr>
 		)
 	})
