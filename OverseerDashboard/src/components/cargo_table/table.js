@@ -1,17 +1,24 @@
 import React from "react"
+import { TableContainer, Table, Paper } from "@mui/material"
 
-import CargoHead from "./head.js"
-import CargoBody from "./body.js"
+import CargoHead from "./head"
+import CargoBody from "./body"
+
+const TABLE_STYLE = {
+	maxWidth:"75%"
+}
 
 /**
  * Our Table component, a collection of header and body
  */
 const CargoTable = () => {
 	return (
-		<table>
-			<CargoHead/>
-			<CargoBody/>
-		</table>
+		<TableContainer component={Paper} sx={TABLE_STYLE}>
+			<Table>
+				<CargoHead/>
+				<CargoBody/>
+			</Table>
+		</TableContainer>
 	)
 }
 

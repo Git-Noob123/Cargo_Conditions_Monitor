@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useContext } from "react"
+import { TableBody, TableRow, TableCell } from "@mui/material"
 
 import { LoginContext } from "../../main_app"
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
@@ -54,26 +55,26 @@ const CargoBody = () => {
 	}
 
 	// Map cargo JSON array to table body
-	const bodyData = cargo.map((row, index) => {
+	const rows = cargo.map((row, index) => {
 		return (
-			<tr key={index}>
-				<td>{index}</td>
-				<td>{row.name}</td>
-				<td>{row.temperature}</td>
-				<td>{row.humidity}</td>
-				<td>{row.driver}</td>
-				<td>{row.notify ? "Yes" : "No"}</td>
-				<td>{row.tempThreshLow}</td>
-				<td>{row.tempThreshHigh}</td>
-			</tr>
+			<TableRow>
+				<TableCell>{index}</TableCell>
+				<TableCell>{row.name}</TableCell>
+				<TableCell>{row.temperature}</TableCell>
+				<TableCell>{row.humidity}</TableCell>
+				<TableCell>{row.driver}</TableCell>
+				<TableCell>{row.notify ? "Yes" : "No"}</TableCell>
+				<TableCell>{row.tempThreshLow}</TableCell>
+				<TableCell>{row.tempThreshHigh}</TableCell>
+			</TableRow>
 		)
 	})
 
 	// Return formatted body
 	return (
-		<tbody>
-			{bodyData}
-		</tbody>
+		<TableBody>
+			{rows}
+		</TableBody>
 	)
 }
 

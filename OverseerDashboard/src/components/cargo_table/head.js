@@ -1,19 +1,20 @@
 import React from "react"
+import { TableHead, TableRow, TableCell } from "@mui/material"
 
 const CargoHead = () => {
 	return (
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Name</th>
-				<th>Temperature</th>
-				<th>Humidity</th>
-				<th>Driver</th>
-				<th>Notification</th>
-				<th>Temp. Thresh Low</th>
-				<th>Temp. Thresh High</th>
-			</tr>
-		</thead>
+		<TableHead>
+			<TableRow>
+				<TableCell>#</TableCell>
+				<TableCell>Name</TableCell>
+				<TableCell>Temperature</TableCell>
+				<TableCell>Humidity</TableCell>
+				<TableCell>Driver</TableCell>
+				<TableCell>Notification</TableCell>
+				<TableCell>Temp. Thresh Low</TableCell>
+				<TableCell>Temp. Thresh High</TableCell>
+			</TableRow>
+		</TableHead>
 	)
 }
 
