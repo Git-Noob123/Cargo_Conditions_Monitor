@@ -9,23 +9,34 @@
 #include <windows.h>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QPainter>
 
 class Dashboard : public QWidget{
     Q_OBJECT
 public:
+    //sprint 1
     Dashboard(QWidget *parent = nullptr);
     QLabel* temperature;
     QLabel* humidity;
     QLineEdit* showtemperature;
     QLineEdit* showhumidity;
     QPushButton* btn;
-
     QTimer *timer;
 
-    bool couldReceive;
+    //sprint 2
+    QLabel* username;
+    QLabel* password;
+    QLineEdit* usernameinput;
+    QLineEdit* passwordinput;
+    QPushButton* login;
+    QPushButton* logout;
 
+    //UI design
+    QLabel* pageTitle;
+    QPainter *painter;
 
 public slots:
+    //sprint 1
     void showtemp(double tempnum);  //show the temperature
     void showhumi(double huminum);  //show the humidity
 
@@ -36,8 +47,16 @@ public slots:
     void normalHumi();
 
     void receiveData();
-    void sendEmergency();
+    void sendEnmergency();
     void sendNothing();
+
+    //sprint 2
+    void sendInfo();
+    void showLoginWrong();
+    void showLoginRight();
+    void Logout();
+    void connecting();
+    void loginPage();
 
 signals:
     void TempData(double tempnum);
@@ -52,6 +71,9 @@ signals:
 
 private:
     QTcpSocket *tcpSocket;
+    bool receive=false;
+    bool logedout=true;
+    QGridLayout* dashboard;
 };
 
 
