@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useCallback} from "react"
-import { useContext } from "react";
-import { LoginContext } from "../../main_app";
+import React, { useEffect, useState, useCallback, useContext } from "react"
+
+import { LoginContext } from "../../main_app"
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
 
 // Default JSON array for when data fetching fails
@@ -10,36 +10,37 @@ const EMPTY_DATA = [{
 	"temperature":0,
 	"humidity":0,
 	"driver":"n/a",
-	"notify":false
+	"notify":false,
+	"tempThreshLow":0,
+	"tempThreshHigh":0
 }]
 
 /**
  * We fetch our data here inside this body component
  * @return the body of the table
  */
-const Body = () => {
-	// Set up hooks
+const CargoBody = () => {
 	const [cargo, setCargo] = useState([])
 	const {currUser} = useContext(LoginContext)
 
 	// Handle fetched data, fixed React warning for not putting handleFetch inside a hook. Also not putting the function inside a hook would cause rerendering issues
 	const handleFetch = useCallback(() => {
-			CargoDataFetcher(currUser)
-				.then((response) => {
-					setCargo(response.data)
-				})
-				.catch((error) => {
-					console.log(error)
-					setCargo(EMPTY_DATA)
-				})
-	}, [currUser]);
-		
+		CargoDataFetcher(currUser)
+			.then((response) => {
+				setCargo(response.data)
+			})
+			.catch((error) => {
+				console.log(error)
+				setCargo(EMPTY_DATA)
+			})
+	}, [currUser])
 
 	// Fetch data immediately on page load
 	useEffect(() => {
 		handleFetch()
 	}, [handleFetch])
 
+	// Fetch data every interval
 	useEffect(() => {
 		const interval = setInterval(() => {
 			handleFetch()
@@ -47,7 +48,7 @@ const Body = () => {
 		return () => clearInterval(interval)
 	}, [handleFetch])
 
-	//removed else statement since the else statement causes too many component rerendering 
+	// Use placeholder data if cannot fetch data
 	if (cargo.length === 0) {
 		setCargo(EMPTY_DATA)
 	}
@@ -57,22 +58,23 @@ const Body = () => {
 		return (
 			<tr key={index}>
 				<td>{index}</td>
-				<td>{row.id}</td>
 				<td>{row.name}</td>
 				<td>{row.temperature}</td>
 				<td>{row.humidity}</td>
 				<td>{row.driver}</td>
 				<td>{row.notify ? "Yes" : "No"}</td>
+				<td>{row.tempThreshLow}</td>
+				<td>{row.tempThreshHigh}</td>
 			</tr>
 		)
 	})
 
 	// Return formatted body
-	return(
+	return (
 		<tbody>
 			{bodyData}
 		</tbody>
 	)
 }
 
-export default Body
+export default CargoBody

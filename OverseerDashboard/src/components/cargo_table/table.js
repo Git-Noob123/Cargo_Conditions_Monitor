@@ -1,18 +1,18 @@
 import React from "react"
 
-import Header from "./header.js"
-import Body from "./body.js"
+import CargoHead from "./head.js"
+import CargoBody from "./body.js"
 
 /**
  * Our Table component, a collection of header and body
  */
-const Table = () => {
+const CargoTable = () => {
 	return (
 		<table>
-			<Header/>
-			<Body/>
+			<CargoHead/>
+			<CargoBody/>
 		</table>
 	)
 }
 
-export default Table
+export default CargoTable
