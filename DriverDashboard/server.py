@@ -17,7 +17,7 @@ humihigh=70
 myclient = pymongo.MongoClient("mongodb://localhost:2000/")# the address of url
 mydb = myclient["cargos"] #the name of database
 collection = mydb['cargo'] 
-collection2 = mydb['login']
+collection2 = mydb['driver_login']
 
 def LoginInfo():
     user_1=({

@@ -27,7 +27,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(timermain,SIGNAL(timeout()),dashboard,SLOT(sendNothing()));
     timermain->start(5000);
 
-    QPixmap pm("E:/ECE4574/Project_transpotation_system/truck2.jpg");
+
+    //backgound image
+    QPixmap pm(":/resources/background_img/truck2.jpg");
     pm=pm.scaled(this->size(),Qt::IgnoreAspectRatio);
     QPalette p;
     p.setBrush(QPalette::Window,pm);
