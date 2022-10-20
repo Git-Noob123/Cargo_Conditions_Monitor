@@ -57,7 +57,7 @@ const CargoBody = () => {
 	// Map cargo JSON array to table body
 	const rows = cargo.map((row, index) => {
 		return (
-			<TableRow>
+			<TableRow key={index}>
 				<TableCell>{index}</TableCell>
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{row.temperature}</TableCell>

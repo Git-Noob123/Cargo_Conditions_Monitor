@@ -6,7 +6,7 @@ const CargoHead = () => {
 		<TableHead>
 			<TableRow>
 				<TableCell>#</TableCell>
-				<TableCell>Name</TableCell>
+				<TableCell>ID</TableCell>
 				<TableCell>Temperature</TableCell>
 				<TableCell>Humidity</TableCell>
 				<TableCell>Driver</TableCell>

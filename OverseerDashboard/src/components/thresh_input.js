@@ -9,6 +9,7 @@ const TABLE_STYLE = {
 }
 
 // TODO: Clear input after submission
+// TODO: Check if only 1 threshold input and send data accordingly
 const ThreshInput = () => {
 	const [id, setID] = useState("")
 	const [tempLo, setTempLo] = useState(0)
