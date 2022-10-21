@@ -4,14 +4,14 @@ import { TableRow, TableCell, Button, TextField } from "@mui/material"
 
 import DatabaseURL from "../db_url"
 
-const INPUT_PROPS = {
+const INPUT_FIELD_PROPS = {
 	step:"0.1"
 }
 const COLORS = {
 	default:"primary",
 	modified:"warning"
 }
-const TEXTFIELD_VARIANT = "outlined"
+const INPUT_FIELD_VARIANT = "outlined"
 
 /**
  * Returns a formatted row of cargo data given said data
@@ -56,13 +56,27 @@ const CargoRow = (args) => {
 			<TableCell>{row.temperature}</TableCell>
 			<TableCell>{row.humidity}</TableCell>
 			<TableCell>{row.driver}</TableCell>
-			<TableCell>{row.notify ? "Yes" : "No"}</TableCell>
+			<TableCell>
+				{row.notify ?
+					<TextField
+						value="Alert"
+						color="error"
+						variant="outlined"
+						InputProps={{readOnly:true}}
+						focused
+					/> : <TextField
+						value="None"
+						variant="outlined"
+						InputProps={{readOnly:true}}
+					/>
+				}
+			</TableCell>
 			<TableCell>
 				<TextField
 					focused
 					type="number"
-					inputProps={INPUT_PROPS}
-					variant={TEXTFIELD_VARIANT}
+					inputProps={INPUT_FIELD_PROPS}
+					variant={INPUT_FIELD_VARIANT}
 					color={tempLoColor}
 					label={currTemp(row.tempThreshLow)}
 					value={tempLoVal}
@@ -76,8 +90,8 @@ const CargoRow = (args) => {
 				<TextField
 					focused
 					type="number"
-					inputProps={INPUT_PROPS}
-					variant={TEXTFIELD_VARIANT}
+					inputProps={INPUT_FIELD_PROPS}
+					variant={INPUT_FIELD_VARIANT}
 					color={tempHiColor}
 					label={currTemp(row.tempThreshHigh)}
 					value={tempHiVal}
