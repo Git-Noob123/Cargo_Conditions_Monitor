@@ -13,6 +13,8 @@ const CargoHead = () => {
 				<TableCell>Notification</TableCell>
 				<TableCell>Temp. Thresh Low</TableCell>
 				<TableCell>Temp. Thresh High</TableCell>
+				<TableCell/>
+				<TableCell/>
 			</TableRow>
 		</TableHead>
 	)

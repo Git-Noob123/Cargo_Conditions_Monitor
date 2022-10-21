@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useContext } from "react"
-import { TableBody, TableRow, TableCell } from "@mui/material"
+import { TableBody } from "@mui/material"
 
 import { LoginContext } from "../../main_app"
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
+import CargoRow from "./row"
 
 // Default JSON array for when data fetching fails
 const EMPTY_DATA = [{
@@ -54,26 +55,12 @@ const CargoBody = () => {
 		setCargo(EMPTY_DATA)
 	}
 
-	// Map cargo JSON array to table body
-	const rows = cargo.map((row, index) => {
-		return (
-			<TableRow key={index}>
-				<TableCell>{index}</TableCell>
-				<TableCell>{row.name}</TableCell>
-				<TableCell>{row.temperature}</TableCell>
-				<TableCell>{row.humidity}</TableCell>
-				<TableCell>{row.driver}</TableCell>
-				<TableCell>{row.notify ? "Yes" : "No"}</TableCell>
-				<TableCell>{row.tempThreshLow}</TableCell>
-				<TableCell>{row.tempThreshHigh}</TableCell>
-			</TableRow>
-		)
-	})
-
 	// Return formatted body
 	return (
 		<TableBody>
-			{rows}
+			{cargo.map((row, index) => {
+				return <CargoRow row={row} index={index} key={index} />
+			})}
 		</TableBody>
 	)
 }
