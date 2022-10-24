@@ -30,6 +30,7 @@ const CargoRow = (args) => {
 
 	// Event handlers
 	const handleSubmit = () => {
+		// TODO: Fix color after submission. Currently doesn't switch back from warning color to default color
 		const data = {
 			"id":row.name,
 			"tempThreshLow":tempLoVal,
@@ -44,8 +45,8 @@ const CargoRow = (args) => {
 		setTempHiVal(row.tempThreshHigh)
 		setTempHiColor(COLORS.default)
 	}
-	const currTemp = (temp) => {
-		return("Current: " + temp + "ºF")
+	const formatTemp = (temp) => {
+		return(temp + "ºF")
 	}
 
 	// Return formatted row
@@ -53,7 +54,23 @@ const CargoRow = (args) => {
 		<TableRow key={index}>
 			<TableCell>{num}</TableCell>
 			<TableCell>{row.name}</TableCell>
-			<TableCell>{row.temperature}</TableCell>
+			<TableCell>
+				{(row.tempThreshLow <= row.temperature && row.tempThreshHigh >= row.temperature) ?
+					<TextField
+						label="In range"
+						value={formatTemp(row.temperature)}
+						variant="outlined"
+						InputProps={{readOnly:true}}
+					/> : <TextField
+						label="Out of range"
+						value={formatTemp(row.temperature)}
+						color="error"
+						variant="outlined"
+						InputProps={{readOnly:true}}
+						focused
+					/>
+				}
+			</TableCell>
 			<TableCell>{row.humidity}</TableCell>
 			<TableCell>{row.driver}</TableCell>
 			<TableCell>
@@ -78,7 +95,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={tempLoColor}
-					label={currTemp(row.tempThreshLow)}
+					label={"Current: " + formatTemp(row.tempThreshLow)}
 					value={tempLoVal}
 					onChange={(e) => {
 						setTempLoVal(e.target.value)
@@ -93,7 +110,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={tempHiColor}
-					label={currTemp(row.tempThreshHigh)}
+					label={"Current: " + formatTemp(row.tempThreshHigh)}
 					value={tempHiVal}
 					onChange={(e) => {
 						setTempHiVal(e.target.value)
