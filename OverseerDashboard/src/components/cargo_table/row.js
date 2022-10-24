@@ -48,12 +48,20 @@ const CargoRow = (args) => {
 	const formatTemp = (temp) => {
 		return(temp + "ºF")
 	}
+	const formatHumi = (humi) => {
+		return(humi + "%")
+	}
 
 	// Return formatted row
 	return (
 		<TableRow key={index}>
+			{/* ID */}
 			<TableCell>{num}</TableCell>
+
+			{/* Item name */}
 			<TableCell>{row.name}</TableCell>
+
+			{/* Temperature reading */}
 			<TableCell>
 				{(row.tempThreshLow <= row.temperature && row.tempThreshHigh >= row.temperature) ?
 					<TextField
@@ -71,8 +79,22 @@ const CargoRow = (args) => {
 					/>
 				}
 			</TableCell>
-			<TableCell>{row.humidity}</TableCell>
+
+			{/* Humidity reading */}
+			<TableCell>
+				{/* TODO: Humidity out of range */}
+				<TextField
+					label="In range"
+					value={formatHumi(row.humidity)}
+					variant="outlined"
+					InputProps={{readOnly:true}}
+				/>
+			</TableCell>
+
+			{/* Driver name */}
 			<TableCell>{row.driver}</TableCell>
+
+			{/* Alert */}
 			<TableCell>
 				{row.notify ?
 					<TextField
@@ -88,6 +110,8 @@ const CargoRow = (args) => {
 					/>
 				}
 			</TableCell>
+
+			{/* Temperature threshold (low) */}
 			<TableCell>
 				<TextField
 					focused
@@ -103,6 +127,8 @@ const CargoRow = (args) => {
 					}}
 				/>
 			</TableCell>
+
+			{/* Temperature threshold (high) */}
 			<TableCell>
 				<TextField
 					focused
@@ -118,11 +144,15 @@ const CargoRow = (args) => {
 					}}
 				/>
 			</TableCell>
+
+			{/* Upload new thresholds */}
 			<TableCell>
 				<Button variant="contained" disableElevation onClick={handleSubmit}>
 					Upload #{num}
 				</Button>
 			</TableCell>
+
+			{/* Clearn new thresholds */}
 			<TableCell>
 				<Button variant="outlined" onClick={handleReset}>
 					Clear #{num}
