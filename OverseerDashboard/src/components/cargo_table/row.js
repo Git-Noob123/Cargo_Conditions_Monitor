@@ -3,6 +3,7 @@ import axios from "axios"
 import { TableRow, TableCell, Button, TextField } from "@mui/material"
 
 import DatabaseURL from "../db_url"
+import RangeWarningCell from "./range_warning_cell"
 
 const INPUT_FIELD_PROPS = {
 	step:"0.1"
@@ -51,6 +52,9 @@ const CargoRow = (args) => {
 	const formatHumi = (humi) => {
 		return(humi + "%")
 	}
+	const checkIfInRange = (value, min, max) => {
+		return (min <= value && value <= max)
+	}
 
 	// Return formatted row
 	return (
@@ -63,32 +67,13 @@ const CargoRow = (args) => {
 
 			{/* Temperature reading */}
 			<TableCell>
-				{(row.tempThreshLow <= row.temperature && row.tempThreshHigh >= row.temperature) ?
-					<TextField
-						label="In range"
-						value={formatTemp(row.temperature)}
-						variant="outlined"
-						InputProps={{readOnly:true}}
-					/> : <TextField
-						label="Out of range"
-						value={formatTemp(row.temperature)}
-						color="error"
-						variant="outlined"
-						InputProps={{readOnly:true}}
-						focused
-					/>
-				}
+				<RangeWarningCell value={formatTemp(row.temperature)} is_in_range={checkIfInRange(row.temperature, row.tempThreshLow, row.tempThreshHigh)} />
 			</TableCell>
 
 			{/* Humidity reading */}
+			{/* TODO: Humidity out of range */}
 			<TableCell>
-				{/* TODO: Humidity out of range */}
-				<TextField
-					label="In range"
-					value={formatHumi(row.humidity)}
-					variant="outlined"
-					InputProps={{readOnly:true}}
-				/>
+				<RangeWarningCell value={formatHumi(row.humidity)} is_in_range={true} />
 			</TableCell>
 
 			{/* Driver name */}
