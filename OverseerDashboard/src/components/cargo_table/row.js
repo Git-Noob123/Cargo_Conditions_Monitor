@@ -66,15 +66,17 @@ const CargoRow = (args) => {
 			<TableCell>{row.name}</TableCell>
 
 			{/* Temperature reading */}
-			<TableCell>
-				<RangeWarningCell value={formatTemp(row.temperature)} is_in_range={checkIfInRange(row.temperature, row.tempThreshLow, row.tempThreshHigh)} />
-			</TableCell>
+			<RangeWarningCell
+				value={formatTemp(row.temperature)}
+				is_in_range={checkIfInRange(row.temperature, row.tempThreshLow, row.tempThreshHigh)}
+			/>
 
 			{/* Humidity reading */}
 			{/* TODO: Humidity out of range */}
-			<TableCell>
-				<RangeWarningCell value={formatHumi(row.humidity)} is_in_range={true} />
-			</TableCell>
+			<RangeWarningCell
+				value={formatHumi(row.humidity)}
+				is_in_range={checkIfInRange(row.humidity, row.humidThreshLow, row.humidThreshHigh)}
+			/>
 
 			{/* Driver name */}
 			<TableCell>{row.driver}</TableCell>

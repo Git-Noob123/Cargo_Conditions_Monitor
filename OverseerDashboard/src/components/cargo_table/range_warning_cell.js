@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material"
+import { TableCell, TextField } from "@mui/material"
 
 const INPUT_PROPS = {
 	readOnly:true
@@ -7,24 +7,28 @@ const INPUT_PROPS = {
 const RangeWarningCell = (args) => {
 	if (args.is_in_range) {
 		return (
-			<TextField
-				label="In range"
-				variant="outlined"
-				value={args.value}
-				InputProps={INPUT_PROPS}
-			/>
+			<TableCell>
+				<TextField
+					label="In range"
+					variant="outlined"
+					value={args.value}
+					InputProps={INPUT_PROPS}
+				/>
+			</TableCell>
 		)
 	}
 	else {
 		return (
-			<TextField
-				label="Out of range"
-				variant="outlined"
-				value={args.value}
-				color="error"
-				InputProps={INPUT_PROPS}
-				focused
-			/>
+			<TableCell>
+				<TextField
+					label="Out of range"
+					variant="outlined"
+					value={args.value}
+					color="error"
+					InputProps={INPUT_PROPS}
+					focused
+				/>
+			</TableCell>
 		)
 	}
 }
