@@ -22,15 +22,12 @@ public class CargoService {
         return cargoRepository.save(cargo);
     }
 
-    public Boolean setThresholds(String id, float tempThreshHigh, float tempThreshLow, float humidThreshHigh, float humidThreshLow){
-        if(tempThreshHigh < tempThreshLow || humidThreshHigh < humidThreshLow) return false;
+    public Boolean setThresholds(String id, float tempThreshHigh, float tempThreshLow){
         Optional<Cargo> entity = cargoRepository.findById(id);
         if(entity.isPresent()){
             Cargo currentCargo = entity.get();
             currentCargo.setTempThreshHigh(tempThreshHigh);
             currentCargo.setTempThreshLow(tempThreshLow);
-            currentCargo.setHumidThreshHigh(humidThreshHigh);
-            currentCargo.setHumidThreshLow(humidThreshLow);
             cargoRepository.save(currentCargo);
             return true;
         }

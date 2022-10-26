@@ -53,7 +53,7 @@ public class CargoController {
 	 */
 	@PatchMapping
 	public void setThresholds(@RequestBody Cargo cargo){
-		if(cargoService.setThresholds(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow(), cargo.getHumidThreshHigh(), cargo.getHumidThreshLow())){
+		if(cargoService.setThresholds(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow())){
 			throw new ResponseStatusException(HttpStatus.OK, "Success");
 		}
 		else{
