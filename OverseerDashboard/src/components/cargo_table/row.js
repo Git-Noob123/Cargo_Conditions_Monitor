@@ -26,8 +26,12 @@ const CargoRow = (args) => {
 	// TODO: Fix temperature values not being set properly on 0th index
 	const [tempLoVal, setTempLoVal] = useState(row.tempThreshLow)
 	const [tempHiVal, setTempHiVal] = useState(row.tempThreshHigh)
+	const [humiLoVal, setHumiLoVal] = useState(row.humidThreshLow)
+	const [humiHiVal, setHumiHiVal] = useState(row.humidThreshHigh)
 	const [tempLoColor, setTempLoColor] = useState(COLORS.default)
 	const [tempHiColor, setTempHiColor] = useState(COLORS.default)
+	const [humiLoColor, setHumiLoColor] = useState(COLORS.default)
+	const [humiHiColor, setHumiHiColor] = useState(COLORS.default)
 
 	// Event handlers
 	const handleSubmit = () => {
@@ -35,7 +39,9 @@ const CargoRow = (args) => {
 		const data = {
 			"id":row.name,
 			"tempThreshLow":tempLoVal,
-			"tempThreshHigh":tempHiVal
+			"tempThreshHigh":tempHiVal,
+			"humidThreshLow":humiLoVal,
+			"humidThreshHigh":humiHiVal
 		}
 		axios.patch(DatabaseURL(), data).catch((error) => console.log(error))
 	}
@@ -45,6 +51,12 @@ const CargoRow = (args) => {
 
 		setTempHiVal(row.tempThreshHigh)
 		setTempHiColor(COLORS.default)
+
+		setHumiLoVal(row.humidThreshLow)
+		setHumiLoColor(COLORS.default)
+
+		setHumiHiVal(row.humidThreshHigh)
+		setHumiHiColor(COLORS.default)
 	}
 	const formatTemp = (temp) => {
 		return(temp + "ºF")
@@ -128,6 +140,40 @@ const CargoRow = (args) => {
 					onChange={(e) => {
 						setTempHiVal(e.target.value)
 						setTempHiColor(e.target.value === String(row.tempThreshHigh) ? COLORS.default : COLORS.modified)
+					}}
+				/>
+			</TableCell>
+
+			{/* Humidity threshold (low) */}
+			<TableCell>
+				<TextField
+					focused
+					type="number"
+					inputProps={INPUT_FIELD_PROPS}
+					variant={INPUT_FIELD_VARIANT}
+					color={humiLoColor}
+					label={"Current: " + formatHumi(row.humidThreshLow)}
+					value={humiLoVal}
+					onChange={(e) => {
+						setHumiLoVal(e.target.value)
+						setHumiLoColor(e.target.value === String(row.humidThreshLow) ? COLORS.default : COLORS.modified)
+					}}
+				/>
+			</TableCell>
+
+			{/* Humidity threshold (high) */}
+			<TableCell>
+				<TextField
+					focused
+					type="number"
+					inputProps={INPUT_FIELD_PROPS}
+					variant={INPUT_FIELD_VARIANT}
+					color={humiHiColor}
+					label={"Current: " + formatHumi(row.humidThreshHigh)}
+					value={humiHiVal}
+					onChange={(e) => {
+						setHumiHiVal(e.target.value)
+						setHumiHiColor(e.target.value === String(row.humidThreshHigh) ? COLORS.default : COLORS.modified)
 					}}
 				/>
 			</TableCell>
