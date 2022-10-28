@@ -14,7 +14,9 @@ const EMPTY_DATA = [{
 	"driver":"n/a",
 	"notify":false,
 	"tempThreshLow":0,
-	"tempThreshHigh":0
+	"tempThreshHigh":0,
+	"humidThreshLow":0,
+	"humidThreshHigh":0
 }]
 
 /**
