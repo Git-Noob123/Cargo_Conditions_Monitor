@@ -13,7 +13,8 @@ const EMPTY_DATA = [{
 	"notify":false,
 	"tempThreshLow":0,
 	"tempThreshHigh":0
-}]
+},
+]
 
 /**
  * We fetch our data here inside this body component
