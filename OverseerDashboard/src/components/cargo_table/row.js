@@ -23,7 +23,6 @@ const CargoRow = (args) => {
 	const num = index + 1
 	const row = args.row
 
-	// TODO: Fix temperature values not being set properly on 0th index
 	const [tempLoVal, setTempLoVal] = useState(row.tempThreshLow)
 	const [tempHiVal, setTempHiVal] = useState(row.tempThreshHigh)
 	const [humiLoVal, setHumiLoVal] = useState(row.humidThreshLow)
@@ -35,7 +34,7 @@ const CargoRow = (args) => {
 
 	// Event handlers
 	const handleSubmit = () => {
-		// TODO: Fix color after submission. Currently doesn't switch back from warning color to default color
+		// TODO (urgent): Fix color after submission. Currently doesn't switch back from warning color to default color
 		const data = {
 			"id":row.name,
 			"tempThreshLow":tempLoVal,
@@ -84,7 +83,6 @@ const CargoRow = (args) => {
 			/>
 
 			{/* Humidity reading */}
-			{/* TODO: Humidity out of range */}
 			<RangeWarningCell
 				value={formatHumi(row.humidity)}
 				is_in_range={checkIfInRange(row.humidity, row.humidThreshLow, row.humidThreshHigh)}

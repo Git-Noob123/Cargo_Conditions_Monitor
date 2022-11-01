@@ -5,19 +5,7 @@ import { LoginContext } from "../../main_app"
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
 import CargoRow from "./row"
 
-// Default JSON array for when data fetching fails
-const EMPTY_DATA = [{
-	"id":"n/a",
-	"name":"n/a",
-	"temperature":0,
-	"humidity":0,
-	"driver":"n/a",
-	"notify":false,
-	"tempThreshLow":0,
-	"tempThreshHigh":0,
-	"humidThreshLow":0,
-	"humidThreshHigh":0
-}]
+const LOADING_DATA = "Fetching data. Please wait..."
 
 /**
  * We fetch our data here inside this body component
@@ -35,7 +23,7 @@ const CargoBody = () => {
 			})
 			.catch((error) => {
 				console.log(error)
-				setCargo(EMPTY_DATA)
+				setCargo([])
 			})
 	}, [currUser])
 
@@ -52,19 +40,19 @@ const CargoBody = () => {
 		return () => clearInterval(interval)
 	}, [handleFetch])
 
-	// Use placeholder data if cannot fetch data
+	// If data has been successfully fetched, return formatted body. Otherwise return placeholder
 	if (cargo.length === 0) {
-		setCargo(EMPTY_DATA)
+		return LOADING_DATA
 	}
-
-	// Return formatted body
-	return (
-		<TableBody>
-			{cargo.map((row, index) => {
-				return <CargoRow row={row} index={index} key={index} />
-			})}
-		</TableBody>
-	)
+	else {
+		return (
+			<TableBody>
+				{cargo.map((row, index) => {
+					return <CargoRow row={row} index={index} key={index} />
+				})}
+			</TableBody>
+		)
+	}
 }
 
 export default CargoBody
