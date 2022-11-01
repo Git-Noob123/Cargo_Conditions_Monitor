@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import axios from "axios"
 import { TableRow, TableCell, Button, TextField } from "@mui/material"
 
-import DatabaseURL from "../db_url"
 import RangeWarningCell from "./range_warning_cell"
+import CargoDataSetter from "../../controllers/cargo_data_setter"
 
 const INPUT_FIELD_PROPS = {
 	step:"0.1"
@@ -34,7 +33,6 @@ const CargoRow = (args) => {
 
 	// Event handlers
 	const handleSubmit = () => {
-		// TODO (urgent): Fix color after submission. Currently doesn't switch back from warning color to default color
 		const data = {
 			"id":row.name,
 			"tempThreshLow":tempLoVal,
@@ -42,20 +40,29 @@ const CargoRow = (args) => {
 			"humidThreshLow":humiLoVal,
 			"humidThreshHigh":humiHiVal
 		}
-		axios.patch(DatabaseURL(), data).catch((error) => console.log(error))
+		CargoDataSetter(data)
+			.then(() => {
+				resetColors()
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}
 	const handleReset = () => {
-		setTempLoVal(row.tempThreshLow)
+		resetColors()
+		resetValues()
+	}
+	const resetColors = () => {
 		setTempLoColor(COLORS.default)
-
-		setTempHiVal(row.tempThreshHigh)
 		setTempHiColor(COLORS.default)
-
-		setHumiLoVal(row.humidThreshLow)
 		setHumiLoColor(COLORS.default)
-
-		setHumiHiVal(row.humidThreshHigh)
 		setHumiHiColor(COLORS.default)
+	}
+	const resetValues = () => {
+		setTempLoVal(row.tempThreshLow)
+		setTempHiVal(row.tempThreshHigh)
+		setHumiLoVal(row.humidThreshLow)
+		setHumiHiVal(row.humidThreshHigh)
 	}
 	const formatTemp = (temp) => {
 		return(temp + "ºF")
@@ -63,7 +70,7 @@ const CargoRow = (args) => {
 	const formatHumi = (humi) => {
 		return(humi + "%")
 	}
-	const checkIfInRange = (value, min, max) => {
+	const isInRange = (value, min, max) => {
 		return (min <= value && value <= max)
 	}
 
@@ -79,13 +86,13 @@ const CargoRow = (args) => {
 			{/* Temperature reading */}
 			<RangeWarningCell
 				value={formatTemp(row.temperature)}
-				is_in_range={checkIfInRange(row.temperature, row.tempThreshLow, row.tempThreshHigh)}
+				is_in_range={isInRange(row.temperature, row.tempThreshLow, row.tempThreshHigh)}
 			/>
 
 			{/* Humidity reading */}
 			<RangeWarningCell
 				value={formatHumi(row.humidity)}
-				is_in_range={checkIfInRange(row.humidity, row.humidThreshLow, row.humidThreshHigh)}
+				is_in_range={isInRange(row.humidity, row.humidThreshLow, row.humidThreshHigh)}
 			/>
 
 			{/* Driver name */}
