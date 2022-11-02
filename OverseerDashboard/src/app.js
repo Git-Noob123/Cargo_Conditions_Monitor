@@ -10,7 +10,7 @@ import MainApp from "./main_app.js"
 const App = () => {
 	return (
 		<BrowserRouter>
-				<MainApp/>
+			<MainApp/>
 		</BrowserRouter>
 	)
 }
