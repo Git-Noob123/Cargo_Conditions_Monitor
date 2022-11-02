@@ -1,5 +1,7 @@
 package com.cargoconditions.backend.Models;
 
+import java.nio.file.attribute.AclEntry;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -25,6 +27,11 @@ public class Cargo {
     private float humidThreshHigh;
     private String overseer;
 
+    private boolean ac;
+    private boolean heater;
+    private boolean humidifier;
+    private boolean dehumidifier;
+
     public Cargo(String name, 
                 float temperature, 
                 float humidity, 
@@ -34,7 +41,12 @@ public class Cargo {
                 float tempThreshHigh, 
                 float humidThreshLow, 
                 float humidThreshHigh, 
-                String overseer){
+                String overseer,
+                boolean ac,
+                boolean heater,
+                boolean humidifier,
+                boolean dehumidifier
+                ){
         super();
         this.name = name;
         this.id = name;
@@ -47,6 +59,10 @@ public class Cargo {
         this.humidThreshLow  = humidThreshLow;
         this.humidThreshHigh = humidThreshHigh;
         this.overseer = overseer;
+        this.ac = ac;
+        this.heater = heater;
+        this.humidifier = humidifier;
+        this.dehumidifier = dehumidifier;
     }
 
 }

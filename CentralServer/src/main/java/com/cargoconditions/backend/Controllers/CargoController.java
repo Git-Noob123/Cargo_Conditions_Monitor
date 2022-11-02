@@ -53,7 +53,18 @@ public class CargoController {
 	 */
 	@PatchMapping
 	public void setThresholds(@RequestBody Cargo cargo){
+		System.out.println(cargo);
 		if(cargoService.setThresholds(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow(), cargo.getHumidThreshHigh(), cargo.getHumidThreshLow())){
+			throw new ResponseStatusException(HttpStatus.OK, "Success");
+		}
+		else{
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fail to update");
+		}
+	}
+
+	@PatchMapping("/Appliances")
+	public void setAppliances(@RequestBody Cargo cargo){
+		if(cargoService.setAppliances(cargo.getId(), cargo.isAc(), cargo.isHeater(), cargo.isHumidifier(), cargo.isDehumidifier())){
 			throw new ResponseStatusException(HttpStatus.OK, "Success");
 		}
 		else{

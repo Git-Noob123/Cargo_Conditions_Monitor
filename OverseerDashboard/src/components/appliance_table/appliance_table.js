@@ -1,18 +1,33 @@
-import React, { useState} from "react"
+import React, { useState, useContext, useCallback, useEffect} from "react"
 
 import ApplianceRow from "./appliance_row"
 import { TableContainer, TableBody, Paper, Table, TableCell, TableHead, TableRow } from "@mui/material"
-
-const EMPTY_DATA = [{
-	"id":"n/a",
-	"ac": false,
-    "heater": false,
-    "humidifier": false,
-    "dehumidifier": false
-}]
+import { LoginContext } from "../../main_app"
+import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
 
 const AppliancesForm = () => {
-    const [data, setData] = useState(EMPTY_DATA);
+    const [data, setData] = useState([]);
+    const {currUser} = useContext(LoginContext)
+    const handleFetch = useCallback(() => {
+		CargoDataFetcher(currUser)
+			.then((response) => {
+				setData(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			})
+	}, [currUser])
+
+	// Fetch data immediately on page load
+	useEffect(() => {
+		handleFetch()
+	}, [handleFetch])
+
+    if(data.length === 0){
+        return (
+            <p>N/A</p>
+        )
+    }
 	return (
         <TableContainer component={Paper} sx = {{maxWidth:900}}>
             <Table sx={{ minWidth: 650}} aria-label="simple table">

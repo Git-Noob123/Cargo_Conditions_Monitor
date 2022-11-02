@@ -38,4 +38,20 @@ public class CargoService {
             return false;
         }
     }
+
+    public Boolean setAppliances(String id, Boolean ac, Boolean heater, Boolean humidifier, Boolean deHumidifier){
+        Optional<Cargo> entity = cargoRepository.findById(id);
+        if(entity.isPresent()){
+            Cargo currentCargo = entity.get();
+            currentCargo.setAc(ac);
+            currentCargo.setHeater(heater);
+            currentCargo.setHumidifier(humidifier);
+            currentCargo.setDehumidifier(deHumidifier);
+            cargoRepository.save(currentCargo);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
