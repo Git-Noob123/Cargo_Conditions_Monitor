@@ -21,6 +21,13 @@ const NavBar = ()=>{
                 Home
             </Button>
             <Button color="inherit"
+                    onClick={()=>{
+                        navigate('/appliances');
+                    }}
+            >
+                Set Appliances
+            </Button>
+            <Button color="inherit"
                     onClick = {()=>{
                         setCurrUser("")
                         setLoggedIn(false)
