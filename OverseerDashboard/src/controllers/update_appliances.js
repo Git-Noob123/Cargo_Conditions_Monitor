@@ -1,7 +1,9 @@
 import axios from "axios"
 
+import DatabaseURL from "../components/db_url"
+
 const UpdateAppliance = async (payload) => {
-    return await axios.patch(`http://localhost:5050/Api/Cargos/Appliances`, payload);
+    return await axios.patch(DatabaseURL() + `/Appliances`, payload);
 }
 
 export default UpdateAppliance;
