@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 import { TableRow, TableCell, Button } from "@mui/material"
+import { toast } from "react-toastify"
 import Switch from "@mui/material/Switch";
 import UpdateAppliance from "../../controllers/update_appliances";
 const ApplianceRow = (props) => {
@@ -17,9 +18,11 @@ const ApplianceRow = (props) => {
       "dehumidifier":dehumidifierState
     };
     UpdateAppliance(payload).then((response) => {
+      toast.success("Upload succeeded!")
       console.log("Appliances set");
     })
     .catch((error) => {
+      toast.error("Failed to upload. Please try again.")
       console.log(error);
     })
   }

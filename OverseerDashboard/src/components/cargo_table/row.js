@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { toast } from "react-toastify"
 import { TableRow, TableCell, Button, TextField } from "@mui/material"
 
 import RangeWarningCell from "./range_warning_cell"
@@ -42,9 +43,11 @@ const CargoRow = (args) => {
 		}
 		CargoDataSetter(data)
 			.then(() => {
+				toast.success("Upload succeeded!")
 				resetColors()
 			})
 			.catch((error) => {
+				toast.error("Failure to upload. Please try again.")
 				console.log(error)
 			})
 	}

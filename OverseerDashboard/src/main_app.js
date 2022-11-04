@@ -2,6 +2,8 @@ import React from "react"
 
 import CargoLayout from "./layouts/cargo_layout.js"
 import {Route, Routes} from "react-router-dom";
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import { useState, createContext, useMemo } from "react";
 import NavBar from "./components/nav_bar.js";
 import LoginLayout from "./layouts/login_layout.js";
@@ -17,7 +19,7 @@ const MainApp = () => {
   	const [loggedIn, setLoggedIn] = useState(false);
 
 	return (
-	<>	
+	<>
 	<LoginContext.Provider
       value={
 		useMemo(() => ({ currUser, loggedIn, setCurrUser, setLoggedIn }), [
@@ -25,6 +27,10 @@ const MainApp = () => {
 		  ])}
     >
 		<NavBar />
+		<ToastContainer
+			position="bottom-right"
+			autoClose={5000}
+		/>
 		<Routes>
 			<Route path="/" element={<LoginLayout />} />
 			<Route path="/cargos" element={<CargoLayout />} />
