@@ -265,6 +265,6 @@ def server_program():
 
 
 if __name__ == '__main__':
-    insertOneData()
+    #insertOneData()
     #LoginInfo()
     server_program()
