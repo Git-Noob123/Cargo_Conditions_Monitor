@@ -50,8 +50,8 @@ def insertOneData():
         'notify':False,
         'tempThreshLow':float(-67.678),
         'tempThreshHigh':float(-1.2343),
-        'humiThreshLow':float(3),
-        'humiThreshHigh':float(100.34),
+        'humidThreshLow':float(3),
+        'humidThreshHigh':float(100.34),
         'overseer':'overseer1'
     })
     result=collection.insert_one(cargo)
@@ -101,7 +101,7 @@ def getTempThresholdHigh():
     return tempThresholdhigh
 
 def getHumiThresholdLow():
-    for x in collection.find({},{"_id":0,"humiThreshLow": 1,"humiThreshHigh":1}):
+    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
         x=str(x)
         firstpart=x.split(",")[0]
         humiThresholdlow=firstpart.split(":")[1]
@@ -113,7 +113,7 @@ def getHumiThresholdLow():
     return humiThresholdlow
 
 def getHumiThresholdHigh():
-    for x in collection.find({},{"_id":0,"humiThreshLow": 1,"humiThreshHigh":1}):
+    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
         x=str(x)
         x=x.rstrip("}")
         secondpart=x.split(",")[1]
@@ -265,6 +265,6 @@ def server_program():
 
 
 if __name__ == '__main__':
-    #insertOneData()
+    insertOneData()
     #LoginInfo()
     server_program()
