@@ -188,12 +188,23 @@ void Dashboard::receiveData(){
     QByteArray qbytearray=tcpSocket->read(11);
     QByteArray login=tcpSocket->readLine();
     QString loginstr=QString::fromUtf8(login);
-    qDebug()<<login;
-    if(login.size()==1){
-        if(loginstr=="F"){
+    QString logincheck=loginstr.left(loginstr.indexOf(";"));
+    QString thresholds=loginstr.right(loginstr.size() - (loginstr.lastIndexOf(";")+1));
+    qDebug()<<loginstr<<","<<logincheck<<","<<thresholds;
+    QStringList list=thresholds.split(",");
+    QString templow;QString temphigh;QString humilow;QString humihigh;
+    if(list.size()>3){
+        templow=list[0];
+        temphigh=list[1];
+        humilow=list[2];
+        humihigh=list[3];
+    }
+    qDebug()<<templow<<","<<temphigh<<","<<humilow<<","<<humihigh;
+    if(logincheck.size()==1){
+        if(logincheck=="F"){
             showLoginWrong();
         }
-        else if(loginstr=="T"){
+        else if(logincheck=="T"){
             showLoginRight();
             receive=true;
             logedout=false;
@@ -207,22 +218,24 @@ void Dashboard::receiveData(){
             QString temp=strlist[0];
             QString humi=strlist[1];
 
-            //This might be used in future*******
-            /*double t=temp.toDouble();
-            double h=humi.toDouble();
-            if(t>=20 && t<=40){
+            double tempcolor=temp.toDouble();
+            double humicolor=humi.toDouble();
+            double tempLow=templow.toDouble();
+            double tempHigh=temphigh.toDouble();
+            double humiLow=humilow.toDouble();
+            double humiHigh=humihigh.toDouble();
+            if(tempcolor>=tempLow && tempcolor<=tempHigh){
                 emit goodtemp();
             }
             else{
                emit EnTemp();
             }
-            if(h>=40 && h<=70){
+            if(humicolor>=humiLow && humicolor<=humiHigh){
                 emit goodhumi();
             }
             else{
                 emit EnHumi();
-            }*/
-            //****************************************
+            }
             showtemp(temp.toDouble());
             showhumi(humi.toDouble());
 
@@ -244,24 +257,23 @@ void Dashboard::showhumi(double huminum){
 }
 
 void Dashboard::tempEmergency(){
-    QPalette p;
-    p.setColor(QPalette::Base,Qt::red);
-    showtemperature->setPalette(p);
+    qDebug()<<"come in";
+    showtemperature->setStyleSheet("QLineEdit{background : rgb(207,69,32);border-radius:10px;padding:2px 4px;}");
 }
 
 void Dashboard::humiEmergency(){
-    QPalette p;
-    p.setColor(QPalette::Base,Qt::red);
-    showhumidity->setPalette(p);
+    qDebug()<<"come in 2";
+    showhumidity->setStyleSheet("QLineEdit{background : rgb(207,69,32);border-radius:10px;padding:2px 4px;}");
+
 }
 
 void Dashboard::normalTemp(){
-    QPalette p;
-    showtemperature->setPalette(p);
+    qDebug()<<"come out";
+    showtemperature->setStyleSheet("QLineEdit{background : rgb(255,255,255);border-radius:10px;padding:2px 4px;}");
 }
 
 void Dashboard::normalHumi(){
-    QPalette p;
-    showhumidity->setPalette(p);
+    qDebug()<<"come out 2";
+    showhumidity->setStyleSheet("QLineEdit{background : rgb(255,255,255);border-radius:10px;padding:2px 4px;}");
 }
 
