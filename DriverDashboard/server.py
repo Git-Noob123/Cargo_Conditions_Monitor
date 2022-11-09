@@ -9,15 +9,15 @@ import pymongo
 
 
 
-templow=20
-temphigh=40
+templow=20*9/5+32
+temphigh=40*9/5+32
 humilow=40
 humihigh=70
 
 myclient = pymongo.MongoClient("mongodb://localhost:2000/")# the address of url
 mydb = myclient["cargos"] #the name of database
 collection = mydb['cargo'] 
-collection2 = mydb['login']
+collection2 = mydb['driver_login']
 
 def LoginInfo():
     user_1=({
@@ -48,8 +48,10 @@ def insertOneData():
         'humidity':float(0),
         'driver':'Mike',
         'notify':False,
-        'tempThreshLow':float(0),
-        'tempThreshHigh':float(0),
+        'tempThreshLow':float(-67.678),
+        'tempThreshHigh':float(-1.2343),
+        'humidThreshLow':float(3),
+        'humidThreshHigh':float(100.34),
         'overseer':'overseer1'
     })
     result=collection.insert_one(cargo)
@@ -71,43 +73,92 @@ def checkUandP(a,b):
 
 def refreshDatabase(temp,humi,note):
     print(temp,humi,note,"in function")
-    res=collection.update_one(filter={'driver':'Mike'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})   
+    res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+
+def getTempThresholdLow():
+    for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):
+        x=str(x)
+        firstpart=x.split(",")[0]
+        tempThresholdlow=firstpart.split(":")[1]
+        if(tempThresholdlow.find(".")!=-1):
+            tempThresholdlow=tempThresholdlow+"0000"
+        else:
+            tempThresholdlow=tempThresholdlow+".0000"
+        tempThresholdlow=tempThresholdlow[1:6]
+    return tempThresholdlow
+
+def getTempThresholdHigh():
+    for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):
+        x=str(x)
+        x=x.rstrip("}")
+        secondpart=x.split(",")[1]
+        tempThresholdhigh=secondpart.split(":")[1]
+        if(tempThresholdhigh.find(".")!=-1):
+            tempThresholdhigh=tempThresholdhigh+"0000"
+        else:
+            tempThresholdhigh=tempThresholdhigh+".0000"
+        tempThresholdhigh=tempThresholdhigh[1:6]
+    return tempThresholdhigh
+
+def getHumiThresholdLow():
+    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
+        x=str(x)
+        firstpart=x.split(",")[0]
+        humiThresholdlow=firstpart.split(":")[1]
+        if(humiThresholdlow.find(".")!=-1):
+            humiThresholdlow=humiThresholdlow+"0000"
+        else:
+            humiThresholdlow=humiThresholdlow+".0000"
+        humiThresholdlow=humiThresholdlow[1:6]
+    return humiThresholdlow
+
+def getHumiThresholdHigh():
+    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
+        x=str(x)
+        x=x.rstrip("}")
+        secondpart=x.split(",")[1]
+        humiThresholdhigh=secondpart.split(":")[1]
+        if(humiThresholdhigh.find(".")!=-1):
+            humiThresholdhigh=humiThresholdhigh+"0000"
+        else:
+            humiThresholdhigh=humiThresholdhigh+".0000"
+        humiThresholdhigh=humiThresholdhigh[1:6]
+    return humiThresholdhigh
+
 
 def getTemp():    #always save 5 digit result (including the dot and the negative sign), such as 3.245, 23.52, -12,4
     numforP=random.uniform(0,4)
+    rightpart_one=str(random.randint(0,10))
+    rightpart_two=str(random.randint(0,100))
+    rightpart_three=str(random.randint(0,1000))
     if(numforP<=3):   #the probility of go into this one is 4/5
-        temp=round(random.uniform(templow,temphigh-1)+random.uniform(0,1),2)
-        temp = str(temp)
-        temp = temp.split('.')[0]+'.'+temp.split('.')[1][:2]  
-        if(len(temp.split('.')[1])==1):
-            temp=temp+'1'
+        leftpart=str(random.randint(templow,temphigh))
+        if(len(leftpart)==1):
+            temp=leftpart+'.'+rightpart_three
+        elif(len(leftpart)==2):
+            temp=leftpart+'.'+rightpart_two
+        elif(len(leftpart)==3):
+            temp=leftpart+'.'+rightpart_one
         temp=float(temp)
     elif(numforP>3 and numforP<=3.5):  #the probility of go into this one is 0.5/5
-        temp=round(random.uniform(-50,templow-1)+random.uniform(0,1),2)
-        if(temp<-10):
-            temp = str(temp)
-            temp = temp.split('.')[0]+'.'+temp.split('.')[1][:1]
-            temp=float(temp)
-        elif(temp>0 and temp<10):
-            temp = str(temp)
-            temp = temp.split('.')[0]+'.'+temp.split('.')[1][:3]
-            if(len(temp.split('.')[1])==1):
-                temp=temp+'01'
-            if(len(temp.split('.')[1])==2):
-                temp=temp+'1'
-            temp=float(temp)
-        else:    #the probility of go into this one is 0.5/5
-            temp = str(temp)
-            temp = temp.split('.')[0]+'.'+temp.split('.')[1][:2]
-            if(len(temp.split('.')[1])==1):
-                temp=temp+'1'            
-            temp=float(temp)
-    else:
-        temp=round(random.uniform(temphigh,59)+random.uniform(0,1),2)
-        temp = str(temp)
-        temp = temp.split('.')[0]+'.'+temp.split('.')[1][:2]
-        if(len(temp.split('.')[1])==1):
-            temp=temp+'1'
+        leftpart=str(random.randint(-100,templow))
+        if(len(leftpart)==1):
+            temp=leftpart+'.'+rightpart_three
+        elif(len(leftpart)==2):
+            temp=leftpart+'.'+rightpart_two
+        elif(len(leftpart)==3):
+            temp=leftpart+'.'+rightpart_one
+        elif(len(leftpart)==4):
+            temp=leftpart
+        temp=float(temp)
+    else:#the probility of go into this one is 0.5/5
+        leftpart=str(random.randint(temphigh,200))
+        if(len(leftpart)==1):
+            temp=leftpart+'.'+rightpart_three
+        elif(len(leftpart)==2):
+            temp=leftpart+'.'+rightpart_two
+        elif(len(leftpart)==3):
+            temp=leftpart+'.'+rightpart_one
         temp=float(temp)
        
     return temp
@@ -166,6 +217,8 @@ def server_program():
     conn, address = server_socket.accept()  # accept new connection
     print("Connection from: " + str(address))
     
+    refreshdata=False
+
     while True:         
         temp=getTemp()
         humi=getHumi()
@@ -189,12 +242,25 @@ def server_program():
             username=finallist[0].split("u:")[1]
             password=finallist[1].split("p:")[1]
             cargoname=finallist[2].split("n:")[1]
+            print(username,password)
             checkdata=checkUandP(username,password)
-            changename(username,cargoname)
+            print(checkdata)
+            if checkdata=="T":
+                changename(username,cargoname)
+                refreshdata=True
             conn.send(checkdata.encode())
         if data.find("emergency happened")!=-1:
             note=True
-        refreshDatabase(temp,humi,note)
+        if refreshdata==True:
+            refreshDatabase(temp,humi,note)
+            tempthreshlow=getTempThresholdLow()
+            tempthreshhigh=getTempThresholdHigh()
+            humithreshlow=getHumiThresholdLow()
+            humithreshhigh=getHumiThresholdHigh()
+            thresholds=";"+tempthreshlow+","+tempthreshhigh+","+humithreshlow+","+humithreshhigh
+            print(thresholds)
+            conn.send(thresholds.encode())
+    
     conn.close()  # close the connection
 
 
