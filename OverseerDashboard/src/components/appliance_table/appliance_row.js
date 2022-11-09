@@ -4,7 +4,7 @@ import { TableRow, TableCell, Button } from "@mui/material"
 import Switch from "@mui/material/Switch";
 
 import UpdateAppliance from "../../controllers/update_appliances";
-import Popup from "../popup"
+import StatusPopup from "../status_popup"
 
 const ApplianceRow = (props) => {
   const [acState, setacState] = useState(props.ac);
@@ -20,11 +20,11 @@ const ApplianceRow = (props) => {
       "dehumidifier":dehumidifierState
     };
     UpdateAppliance(payload).then((response) => {
-      Popup(true)
+      StatusPopup(true)
       console.log("Appliances set");
     })
     .catch((error) => {
-      Popup(false)
+      StatusPopup(false)
       console.log(error);
     })
   }
