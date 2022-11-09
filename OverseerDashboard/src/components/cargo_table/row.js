@@ -3,6 +3,7 @@ import { TableRow, TableCell, Button, TextField } from "@mui/material"
 
 import RangeWarningCell from "./range_warning_cell"
 import CargoDataSetter from "../../controllers/cargo_data_setter"
+import Popup from "../popup"
 
 const INPUT_FIELD_PROPS = {
 	step:"0.1"
@@ -42,9 +43,11 @@ const CargoRow = (args) => {
 		}
 		CargoDataSetter(data)
 			.then(() => {
+				Popup(true)
 				resetColors()
 			})
 			.catch((error) => {
+				Popup(false)
 				console.log(error)
 			})
 	}

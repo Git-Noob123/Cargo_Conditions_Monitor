@@ -18,14 +18,14 @@ const NavBar = ()=>{
                         navigate('/cargos');
                     }}
             >
-                Home
+                Cargo
             </Button>
             <Button color="inherit"
                     onClick={()=>{
                         navigate('/appliances');
                     }}
             >
-                Set Appliances
+                Appliances
             </Button>
             <Button color="inherit"
                     onClick = {()=>{

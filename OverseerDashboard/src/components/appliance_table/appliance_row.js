@@ -2,7 +2,10 @@ import React, { useState } from "react"
 
 import { TableRow, TableCell, Button } from "@mui/material"
 import Switch from "@mui/material/Switch";
+
 import UpdateAppliance from "../../controllers/update_appliances";
+import Popup from "../popup"
+
 const ApplianceRow = (props) => {
   const [acState, setacState] = useState(props.ac);
   const [heaterState, setHeaterState] = useState(props.heater);
@@ -17,9 +20,11 @@ const ApplianceRow = (props) => {
       "dehumidifier":dehumidifierState
     };
     UpdateAppliance(payload).then((response) => {
+      Popup(true)
       console.log("Appliances set");
     })
     .catch((error) => {
+      Popup(false)
       console.log(error);
     })
   }
