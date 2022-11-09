@@ -34,7 +34,7 @@ const NavBar = ()=>{
                         navigate('/login');
                     }} 
             > 
-                Logout
+                Log out
             </Button>
         </Toolbar>
     </AppBar>)

@@ -5,6 +5,7 @@ import Switch from "@mui/material/Switch";
 
 import UpdateAppliance from "../../controllers/update_appliances";
 import StatusPopup from "../status_popup"
+import ButtonStyle from "../button_style"
 
 const ApplianceRow = (props) => {
   const [acState, setacState] = useState(props.ac);
@@ -68,11 +69,9 @@ const ApplianceRow = (props) => {
         <TableCell align="center">
             <Button 
               variant="contained"
-              style={{
-                background: '#630031',
-              }}
+              style={ButtonStyle()}
               onClick= {()=>{
-                updateAppliance();
+                updateAppliance()
                 }
               }
             >

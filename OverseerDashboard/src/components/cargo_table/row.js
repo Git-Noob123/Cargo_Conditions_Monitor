@@ -4,6 +4,7 @@ import { TableRow, TableCell, Button, TextField } from "@mui/material"
 import RangeWarningCell from "./range_warning_cell"
 import CargoDataSetter from "../../controllers/cargo_data_setter"
 import StatusPopup from "../status_popup"
+import ButtonStyle from "../button_style"
 
 const INPUT_FIELD_PROPS = {
 	step:"0.1"
@@ -20,7 +21,6 @@ const INPUT_FIELD_VARIANT = "outlined"
 const CargoRow = (args) => {
 	// Set data
 	const index = args.index
-	const num = index + 1
 	const row = args.row
 
 	const [tempLoVal, setTempLoVal] = useState(row.tempThreshLow)
@@ -81,7 +81,7 @@ const CargoRow = (args) => {
 	return (
 		<TableRow key={index}>
 			{/* ID */}
-			<TableCell>{num}</TableCell>
+			<TableCell>{index + 1}</TableCell>
 
 			{/* Item name */}
 			<TableCell>{row.name}</TableCell>
@@ -188,15 +188,15 @@ const CargoRow = (args) => {
 
 			{/* Upload new thresholds */}
 			<TableCell>
-				<Button variant="contained" disableElevation onClick={handleSubmit}>
-					Upload #{num}
+				<Button variant="contained" disableElevation onClick={handleSubmit} style={ButtonStyle()}>
+					Upload
 				</Button>
 			</TableCell>
 
 			{/* Clearn new thresholds */}
 			<TableCell>
 				<Button variant="outlined" onClick={handleReset}>
-					Clear #{num}
+					Clear
 				</Button>
 			</TableCell>
 		</TableRow>
