@@ -24,6 +24,7 @@ public class CargoService {
 
     public Boolean setThresholds(String id, float tempThreshHigh, float tempThreshLow, float humidThreshHigh, float humidThreshLow){
         if(tempThreshHigh < tempThreshLow || humidThreshHigh < humidThreshLow) return false;
+        if(humidThreshHigh > 100 ||  humidThreshLow < 0) return false;
         Optional<Cargo> entity = cargoRepository.findById(id);
         if(entity.isPresent()){
             Cargo currentCargo = entity.get();
