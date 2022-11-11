@@ -1,6 +1,7 @@
 import React from "react"
 
 import CargoTable from "../components/cargo_table/table"
+import Title from "./title"
 
 /**
  * Layout level is a collection of components, each layout file is a part we see on webpage.
@@ -10,7 +11,7 @@ import CargoTable from "../components/cargo_table/table"
 const CargoLayout = () => {
 	return (
 		<div>
-			<h1>Welcome, Overseer!</h1>
+			<Title text="Cargo Containers" />
 			<CargoTable/>
 		</div>
 	)

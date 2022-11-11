@@ -9,8 +9,8 @@ import CargoBody from "./body"
  */
 const CargoTable = () => {
 	return (
-		<TableContainer component={Paper}>
-			<Table>
+		<TableContainer>
+			<Table align="center" sx={{width:1500}}>
 				<CargoHead/>
 				<CargoBody/>
 			</Table>

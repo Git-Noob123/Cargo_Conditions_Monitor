@@ -1,12 +1,12 @@
 import { toast } from "react-toastify"
 
-const Popup = (success) => {
+const StatusPopup = (success) => {
 	if (success) {
 		toast.success("Upload success!")
 	}
 	else {
-		toast.error("Upload failed. Please try again.")
+		toast.error("Upload failed.")
 	}
 }
 
-export default Popup
+export default StatusPopup
