@@ -1,11 +1,15 @@
 import React from "react"
 
 import LoginForm from "../components/login_form";
+import Title from "./title";
 
 
 const LoginLayout = () => {
 	return (
-		<LoginForm/>
+		<div>
+			<Title text="Overseer Dashboard" />
+			<LoginForm/>
+		</div>
 	)
 }
 

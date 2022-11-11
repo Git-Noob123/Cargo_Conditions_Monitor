@@ -36,10 +36,7 @@ const LoginForm = () => {
 
 	return (
 		<div style={{display: 'flex',  justifyContent:'center'}}>
-			<Box
-				component="form"
-    		>
-				<p style={ {fontSize: 28} }>Login to Overseer Dashboard</p>
+			<Box component="form">
 				<div>
 					<TextField
 						required
