@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback, useContext } from "react"
-import { TableBody } from "@mui/material"
+import { TableBody, TableRow, TableCell } from "@mui/material"
 
 import { LoginContext } from "../../main_app"
 import CargoDataFetcher from "../../controllers/cargo_data_fetcher"
 import CargoRow from "./row"
 
-const LOADING_DATA = "Fetching data. Please wait..."
+const LOADING_TEXT = "Fetching data. Please wait..."
 
 /**
  * We fetch our data here inside this body component
@@ -42,7 +42,11 @@ const CargoBody = () => {
 
 	// If data has been successfully fetched, return formatted body. Otherwise return placeholder
 	if (cargo.length === 0) {
-		return LOADING_DATA
+		return (
+			<TableBody><TableRow><TableCell>
+				{LOADING_TEXT}
+			</TableCell></TableRow></TableBody>
+		) // TODO: Fix formatting. Currently, this awkwardly inserts the loading text into the first column only.
 	}
 	else {
 		return (
