@@ -10,7 +10,7 @@ const INPUT_FIELD_PROPS = {
 	step:"0.1"
 }
 const COLORS = {
-	default:"primary",
+	default:"primary", // TODO (QOL): Use a less distracting color for default threshold values. Probably a neutral color--white, gray, or black?
 	modified:"warning"
 }
 const INPUT_FIELD_VARIANT = "outlined"
@@ -74,7 +74,10 @@ const CargoRow = (args) => {
 		return(humi + "%")
 	}
 	const isInRange = (value, min, max) => {
-		return (min <= value && value <= max)
+		return(min <= value && value <= max)
+	}
+	const labelCurrent = () => {
+		return("Curr: ")
 	}
 
 	// Return formatted row
@@ -126,7 +129,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={tempLoColor}
-					label={"Current: " + formatTemp(row.tempThreshLow)}
+					label={labelCurrent() + formatTemp(row.tempThreshLow)}
 					value={tempLoVal}
 					onChange={(e) => {
 						setTempLoVal(e.target.value)
@@ -143,7 +146,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={tempHiColor}
-					label={"Current: " + formatTemp(row.tempThreshHigh)}
+					label={labelCurrent() + formatTemp(row.tempThreshHigh)}
 					value={tempHiVal}
 					onChange={(e) => {
 						setTempHiVal(e.target.value)
@@ -160,7 +163,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={humiLoColor}
-					label={"Current: " + formatHumi(row.humidThreshLow)}
+					label={labelCurrent() + formatHumi(row.humidThreshLow)}
 					value={humiLoVal}
 					onChange={(e) => {
 						setHumiLoVal(e.target.value)
@@ -177,7 +180,7 @@ const CargoRow = (args) => {
 					inputProps={INPUT_FIELD_PROPS}
 					variant={INPUT_FIELD_VARIANT}
 					color={humiHiColor}
-					label={"Current: " + formatHumi(row.humidThreshHigh)}
+					label={labelCurrent() + formatHumi(row.humidThreshHigh)}
 					value={humiHiVal}
 					onChange={(e) => {
 						setHumiHiVal(e.target.value)
@@ -193,7 +196,7 @@ const CargoRow = (args) => {
 				</Button>
 			</TableCell>
 
-			{/* Clearn new thresholds */}
+			{/* Clear new thresholds */}
 			<TableCell>
 				<Button variant="outlined" onClick={handleReset}>
 					Clear
