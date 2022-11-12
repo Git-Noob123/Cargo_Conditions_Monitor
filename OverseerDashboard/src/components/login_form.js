@@ -1,11 +1,15 @@
 import React, { useState, useContext } from "react"
-import { Button, TextField, Box } from "@mui/material"
-import VerifyLogin from "../controllers/submit_login_info";
 import { useNavigate } from "react-router-dom";
+import { Button, TextField, Box } from "@mui/material"
+
+import VerifyLogin from "../controllers/submit_login_info";
 import { LoginContext } from "../main_app";
+
+// TODO (QOL): Allow sending login info when 'enter' is pressed
 /**
  * Login page
  */
+
 const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -44,8 +48,8 @@ const LoginForm = () => {
 						id="usernameInput"
 						label="Username"
 						variant="filled"
-						sx={{ 
-							width: 420, 
+						sx={{
+							width: 420,
 							marginBottom : 2,
 						}}
 						onChange = {(e)=>{
@@ -62,7 +66,7 @@ const LoginForm = () => {
 						label="Password"
 						variant="filled"
 						type = 'password'
-						sx={{ 
+						sx={{
 							width: 420,
 							marginBottom : 2
 						}}
@@ -73,7 +77,7 @@ const LoginForm = () => {
 						/>
 				</div>
 				<div>
-					<Button 
+					<Button
 						variant="contained"
 						style={{
 							background: '#630031',
