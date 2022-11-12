@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { TableRow, TableCell, Button, TextField } from "@mui/material"
+import { TableRow, TableCell, Button, TextField, Switch } from "@mui/material"
 
 import RangeWarningCell from "./range_warning_cell"
 import CargoDataSetter from "../../controllers/cargo_data_setter"
@@ -23,6 +23,7 @@ const CargoRow = (args) => {
 	const index = args.index
 	const row = args.row
 
+	const [alert, setAlert] = useState(row.notify)
 	const [tempLoVal, setTempLoVal] = useState(row.tempThreshLow)
 	const [tempHiVal, setTempHiVal] = useState(row.tempThreshHigh)
 	const [humiLoVal, setHumiLoVal] = useState(row.humidThreshLow)
@@ -39,12 +40,14 @@ const CargoRow = (args) => {
 			"tempThreshLow":tempLoVal,
 			"tempThreshHigh":tempHiVal,
 			"humidThreshLow":humiLoVal,
-			"humidThreshHigh":humiHiVal
+			"humidThreshHigh":humiHiVal,
+//			"notify":alert // TODO (urgent): Uncomment alert from update once new JSON is implemented in server
 		}
 		CargoDataSetter(data)
 			.then(() => {
 				StatusPopup(true)
 				resetColors()
+				resetAlert()
 			})
 			.catch((error) => {
 				StatusPopup(false)
@@ -54,6 +57,10 @@ const CargoRow = (args) => {
 	const handleReset = () => {
 		resetColors()
 		resetValues()
+		resetAlert()
+	}
+	const resetAlert = () => {
+		setAlert(row.notify)
 	}
 	const resetColors = () => {
 		setTempLoColor(COLORS.default)
@@ -103,19 +110,14 @@ const CargoRow = (args) => {
 
 			{/* Alert */}
 			<TableCell>
-				{row.notify ?
-					<TextField
-						value="Alert"
-						color="error"
-						variant="outlined"
-						InputProps={{readOnly:true}}
-						focused
-					/> : <TextField
-						value="None"
-						variant="outlined"
-						InputProps={{readOnly:true}}
-					/>
-				}
+				<Switch
+					color="error"
+					onChange = {() => {
+						setAlert(!alert)
+					}}
+					disabled={!row.notify}
+					checked={alert}
+				/>
 			</TableCell>
 
 			{/* Temperature threshold (low) */}
@@ -193,7 +195,7 @@ const CargoRow = (args) => {
 				</Button>
 			</TableCell>
 
-			{/* Clearn new thresholds */}
+			{/* Clear new thresholds */}
 			<TableCell>
 				<Button variant="outlined" onClick={handleReset}>
 					Clear
