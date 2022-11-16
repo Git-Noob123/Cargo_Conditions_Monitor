@@ -41,7 +41,7 @@ const CargoRow = (args) => {
 			"tempThreshHigh":tempHiVal,
 			"humidThreshLow":humiLoVal,
 			"humidThreshHigh":humiHiVal,
-//			"notify":alert // TODO (urgent): Uncomment alert from update once new JSON is implemented in server
+			"notify":alert
 		}
 		CargoDataSetter(data)
 			.then(() => {
