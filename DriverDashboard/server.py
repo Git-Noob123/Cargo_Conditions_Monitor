@@ -38,9 +38,9 @@ def LoginInfo():
     # result=collection2.insert_one(user_1)
     # result=collection2.insert_one(user_2)
     # result=collection2.insert_one(user_3)
-    result=collection.replace_one({"_id":user_1['_id']},user_1,upsert=True)
-    result=collection.replace_one({"_id":user_2['_id']},user_2,upsert=True)
-    result=collection.replace_one({"_id":user_3['_id']},user_3,upsert=True)
+    result=collection2.replace_one({"_id":user_1['_id']},user_1,upsert=True)
+    result=collection2.replace_one({"_id":user_2['_id']},user_2,upsert=True)
+    result=collection2.replace_one({"_id":user_3['_id']},user_3,upsert=True)
 
 
 def insertOneData():
@@ -80,7 +80,10 @@ def checkUandP(a,b):
 
 def refreshDatabase(temp,humi,note):
     print(temp,humi,note,"in function")
-    res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+    if note == True:
+        res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+    else: 
+        res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi}})
 
 def getTempThresholdLow():
     for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):

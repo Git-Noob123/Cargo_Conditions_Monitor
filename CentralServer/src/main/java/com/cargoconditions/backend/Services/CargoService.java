@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BooleanSupplier;
 @Service
 @AllArgsConstructor
 public class CargoService {
@@ -22,7 +23,7 @@ public class CargoService {
         return cargoRepository.save(cargo);
     }
 
-    public Boolean setThresholds(String id, float tempThreshHigh, float tempThreshLow, float humidThreshHigh, float humidThreshLow){
+    public Boolean setData(String id, float tempThreshHigh, float tempThreshLow, float humidThreshHigh, float humidThreshLow, boolean notify){
         if(tempThreshHigh < tempThreshLow || humidThreshHigh < humidThreshLow) return false;
         if(humidThreshHigh > 100 ||  humidThreshLow < 0) return false;
         Optional<Cargo> entity = cargoRepository.findById(id);
@@ -32,6 +33,7 @@ public class CargoService {
             currentCargo.setTempThreshLow(tempThreshLow);
             currentCargo.setHumidThreshHigh(humidThreshHigh);
             currentCargo.setHumidThreshLow(humidThreshLow);
+            currentCargo.setNotify(notify);
             cargoRepository.save(currentCargo);
             return true;
         }
@@ -48,6 +50,18 @@ public class CargoService {
             currentCargo.setHeater(heater);
             currentCargo.setHumidifier(humidifier);
             currentCargo.setDehumidifier(deHumidifier);
+            cargoRepository.save(currentCargo);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public Boolean setNotifyStatus(String id, Boolean notify){
+        Optional<Cargo> entity = cargoRepository.findById(id);
+        if(entity.isPresent()){
+            Cargo currentCargo = entity.get();
+            currentCargo.setNotify(notify);
             cargoRepository.save(currentCargo);
             return true;
         }

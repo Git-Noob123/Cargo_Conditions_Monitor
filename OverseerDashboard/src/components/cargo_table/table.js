@@ -1,5 +1,5 @@
 import React from "react"
-import { TableContainer, Table, Paper } from "@mui/material"
+import { TableContainer, Table} from "@mui/material"
 
 import CargoHead from "./head"
 import CargoBody from "./body"

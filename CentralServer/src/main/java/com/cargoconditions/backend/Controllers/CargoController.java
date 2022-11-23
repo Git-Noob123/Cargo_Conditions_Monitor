@@ -52,9 +52,9 @@ public class CargoController {
 	 * @param tempThreshLow: Low threshold for temperature
 	 */
 	@PatchMapping
-	public void setThresholds(@RequestBody Cargo cargo){
+	public void setData(@RequestBody Cargo cargo){
 		System.out.println(cargo);
-		if(cargoService.setThresholds(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow(), cargo.getHumidThreshHigh(), cargo.getHumidThreshLow())){
+		if(cargoService.setData(cargo.getId(), cargo.getTempThreshHigh(), cargo.getTempThreshLow(), cargo.getHumidThreshHigh(), cargo.getHumidThreshLow(), cargo.isNotify())){
 			throw new ResponseStatusException(HttpStatus.OK, "Success");
 		}
 		else{
@@ -65,6 +65,16 @@ public class CargoController {
 	@PatchMapping("/Appliances")
 	public void setAppliances(@RequestBody Cargo cargo){
 		if(cargoService.setAppliances(cargo.getId(), cargo.isAc(), cargo.isHeater(), cargo.isHumidifier(), cargo.isDehumidifier())){
+			throw new ResponseStatusException(HttpStatus.OK, "Success");
+		}
+		else{
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fail to update");
+		}
+	}
+
+	@PatchMapping("/Notify")
+	public void setNotifyStatus(@RequestBody Cargo cargo){
+		if(cargoService.setNotifyStatus(cargo.getId(), cargo.isNotify())){
 			throw new ResponseStatusException(HttpStatus.OK, "Success");
 		}
 		else{
