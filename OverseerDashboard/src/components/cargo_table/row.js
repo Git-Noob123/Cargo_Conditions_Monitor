@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { TableRow, TableCell, Button, TextField, Switch } from "@mui/material"
 
 import RangeWarningCell from "./range_warning_cell"
@@ -32,7 +32,9 @@ const CargoRow = (args) => {
 	const [tempHiColor, setTempHiColor] = useState(COLORS.default)
 	const [humiLoColor, setHumiLoColor] = useState(COLORS.default)
 	const [humiHiColor, setHumiHiColor] = useState(COLORS.default)
-
+    useEffect(()=>{
+		setAlert(row.notify)
+	},[row.notify]) 
 	// Event handlers
 	const handleSubmit = () => {
 		const data = {
@@ -47,7 +49,6 @@ const CargoRow = (args) => {
 			.then(() => {
 				StatusPopup(true)
 				resetColors()
-				resetAlert()
 			})
 			.catch((error) => {
 				StatusPopup(false)
@@ -118,7 +119,7 @@ const CargoRow = (args) => {
 					onChange = {() => {
 						setAlert(!alert)
 					}}
-					disabled={!row.notify}
+					disabled={!alert}
 					checked={alert}
 				/>
 			</TableCell>
