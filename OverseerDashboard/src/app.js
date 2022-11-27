@@ -1,14 +1,18 @@
 import React from "react"
+import { BrowserRouter } from "react-router-dom"
+
 import MainApp from "./main_app.js"
 
 /**
  * This level is for global stylings and some general settings, such as queryClientProvider
- * 
+ *
  */
-const App = (data) => {
+const App = () => {
 	return (
-		<MainApp data={data.data}/>
-	);
+		<BrowserRouter>
+			<MainApp/>
+		</BrowserRouter>
+	)
 }
 
 export default App
