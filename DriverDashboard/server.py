@@ -42,8 +42,8 @@ def LoginInfo():
 
 def insertOneData():
     cargo=({       
-        '_id':'cargo_0',   #_id should not be the same
-        'name':'cargo_0',
+        '_id':'transistors#1',   #_id should not be the same
+        'name':'transistors#1',
         'temperature':float(0),
         'humidity':float(0),
         'driver':'Mike',
@@ -51,10 +51,24 @@ def insertOneData():
         'tempThreshLow':float(-67.678),
         'tempThreshHigh':float(-1.2343),
         'humidThreshLow':float(3),
-        'humidThreshHigh':float(100.34),
+        'humidThreshHigh':float(90.34),
         'overseer':'overseer1'
     })
     result=collection.insert_one(cargo)
+    cargo2=({       
+        '_id':'transistors#2',   #_id should not be the same
+        'name':'transistors#2',
+        'temperature':float(20),
+        'humidity':float(30),
+        'driver':'Tom',
+        'notify':False,
+        'tempThreshLow':float(-10),
+        'tempThreshHigh':float(20),
+        'humidThreshLow':float(30),
+        'humidThreshHigh':float(50),
+        'overseer':'Jack'
+    })
+    result=collection.insert_one(cargo2)
 
 def changename(username,cargoname):
     res=collection.update_one(filter={'name':cargoname},update={"$set":{'driver':username}})   
@@ -76,54 +90,40 @@ def refreshDatabase(temp,humi,note):
     res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
 
 def getTempThresholdLow():
-    for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):
-        x=str(x)
-        firstpart=x.split(",")[0]
-        tempThresholdlow=firstpart.split(":")[1]
-        if(tempThresholdlow.find(".")!=-1):
-            tempThresholdlow=tempThresholdlow+"0000"
+    myquery={"name": "transistors#1"}
+    for x in collection.find(myquery):
+        if x=="":
+            return "-999"
         else:
-            tempThresholdlow=tempThresholdlow+".0000"
-        tempThresholdlow=tempThresholdlow[1:6]
-    return tempThresholdlow
+            templ=str(x['tempThreshLow'])
+            return templ
 
 def getTempThresholdHigh():
-    for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):
-        x=str(x)
-        x=x.rstrip("}")
-        secondpart=x.split(",")[1]
-        tempThresholdhigh=secondpart.split(":")[1]
-        if(tempThresholdhigh.find(".")!=-1):
-            tempThresholdhigh=tempThresholdhigh+"0000"
+    myquery={"name": "transistors#1"}
+    for x in collection.find(myquery):
+        if x=="":
+            return "-999"
         else:
-            tempThresholdhigh=tempThresholdhigh+".0000"
-        tempThresholdhigh=tempThresholdhigh[1:6]
-    return tempThresholdhigh
+            temph=str(x['tempThreshHigh'])
+            return temph
 
 def getHumiThresholdLow():
-    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
-        x=str(x)
-        firstpart=x.split(",")[0]
-        humiThresholdlow=firstpart.split(":")[1]
-        if(humiThresholdlow.find(".")!=-1):
-            humiThresholdlow=humiThresholdlow+"0000"
+    myquery={"name": "transistors#1"}
+    for x in collection.find(myquery):
+        if x=="":
+            return "-999"
         else:
-            humiThresholdlow=humiThresholdlow+".0000"
-        humiThresholdlow=humiThresholdlow[1:6]
-    return humiThresholdlow
+            humil=str(x['humidThreshLow'])
+            return humil
 
 def getHumiThresholdHigh():
-    for x in collection.find({},{"_id":0,"humidThreshLow": 1,"humidThreshHigh":1}):
-        x=str(x)
-        x=x.rstrip("}")
-        secondpart=x.split(",")[1]
-        humiThresholdhigh=secondpart.split(":")[1]
-        if(humiThresholdhigh.find(".")!=-1):
-            humiThresholdhigh=humiThresholdhigh+"0000"
+    myquery={"name": "transistors#1"}
+    for x in collection.find(myquery):
+        if x=="":
+            return "-999"
         else:
-            humiThresholdhigh=humiThresholdhigh+".0000"
-        humiThresholdhigh=humiThresholdhigh[1:6]
-    return humiThresholdhigh
+            humih=str(x['humidThreshHigh'])
+            return humih
 
 
 def getTemp():    #always save 5 digit result (including the dot and the negative sign), such as 3.245, 23.52, -12,4
