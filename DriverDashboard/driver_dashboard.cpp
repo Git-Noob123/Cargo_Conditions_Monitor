@@ -13,7 +13,7 @@ Dashboard::Dashboard(QWidget *parent) : QWidget(parent){
     temperature->setStyleSheet("font-weight: bold; color: black");
     temperature->setParent(this);
 
-    humidity = new QLabel("humidty:");
+    humidity = new QLabel("humidity:");
     humidity->setGeometry(10,300,140,50);
     humidity->setFont(ftu);
     humidity->setStyleSheet("font-weight: bold; color: black");

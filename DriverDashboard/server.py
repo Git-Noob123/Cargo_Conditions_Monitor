@@ -45,8 +45,8 @@ def LoginInfo():
 
 def insertOneData():
     cargo=({       
-        '_id':'cargo_0',   #_id should not be the same
-        'name':'cargo_0',
+        '_id':'transistors#1', 
+        'name':'transistors#1',
         'temperature':float(0),
         'humidity':float(0),
         'driver':'Mike',
@@ -54,7 +54,7 @@ def insertOneData():
         'tempThreshLow':float(-67.678),
         'tempThreshHigh':float(-1.2343),
         'humidThreshLow':float(3),
-        'humidThreshHigh':float(100.34),
+        'humidThreshHigh':float(90.34),
         'overseer':'Jerry',
         "ac": False,
         "heater": False,
@@ -81,9 +81,9 @@ def checkUandP(a,b):
 def refreshDatabase(temp,humi,note):
     print(temp,humi,note,"in function")
     if note == True:
-        res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+        res=collection.update_one(filter={'name':'transistors#1'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
     else: 
-        res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi}})
+        res=collection.update_one(filter={'name':'transistors#1'},update={"$set":{'temperature':temp, 'humidity':humi}})
 
 def getTempThresholdLow():
     for x in collection.find({},{"_id":0,"tempThreshLow": 1,"tempThreshHigh":1}):
@@ -120,6 +120,7 @@ def getHumiThresholdLow():
         else:
             humiThresholdlow=humiThresholdlow+".0000"
         humiThresholdlow=humiThresholdlow[1:6]
+    print(humiThresholdlow)
     return humiThresholdlow
 
 def getHumiThresholdHigh():
