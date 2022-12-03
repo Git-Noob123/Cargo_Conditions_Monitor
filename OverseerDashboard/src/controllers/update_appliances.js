@@ -1,4 +1,4 @@
-/* update_appliances.js    Yuxiang Dong, Justin Potter    Virginia Tech    November 2, 2022
+/* update_appliances.js    Jerry Dong, Justin Potter    Virginia Tech    November 2, 2022
  * This defines a component that sends a PATCH request to the database when the overseer toggles
  * on/off an appliance
  * Modified November 3, 2022 to replace hard-coded database URL

@@ -1,4 +1,4 @@
-/* submit_login_info.js    Yuxiang Dong    Virginia Tech    October 15, 2022
+/* submit_login_info.js    Jerry Dong    Virginia Tech    October 15, 2022
  * This defines a component that sends a POST request with login info when overseer tries to log in
  */
 
