@@ -1,3 +1,10 @@
+/* row.js	Justin Potter, Jerry Dong	Virginia Tech	October 20, 2022
+ * This defines a single row of the cargo data table's body. A row displays the most up-to-date
+ * cargo data from the server, allows the overseer to submit changes to threshold values for each
+ * cargo entry, and see and disable alerts from drivers
+ * Modified November 23, 2022 to fix bug with notification switch
+ */
+
 import React, { useState, useEffect } from "react"
 import { TableRow, TableCell, Button, TextField, Switch } from "@mui/material"
 
@@ -32,9 +39,9 @@ const CargoRow = (args) => {
 	const [tempHiColor, setTempHiColor] = useState(COLORS.default)
 	const [humiLoColor, setHumiLoColor] = useState(COLORS.default)
 	const [humiHiColor, setHumiHiColor] = useState(COLORS.default)
-    useEffect(()=>{
+	useEffect(()=>{
 		setAlert(row.notify)
-	},[row.notify]) 
+	},[row.notify])
 	// Event handlers
 	const handleSubmit = () => {
 		const data = {

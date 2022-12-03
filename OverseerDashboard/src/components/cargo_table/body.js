@@ -1,3 +1,9 @@
+/* body.js    Justin Potter    Virginia Tech    September 22, 2022
+ * This defines the body of the cargo data table. It fetches the cargo data from the server at a set
+ * interval to update the table with latest cargo data values, adding or removing rows if necessary
+ * Modified November 12, 2022 to fix DOM nesting issue
+ */
+
 import React, { useEffect, useState, useCallback, useContext } from "react"
 import { TableBody, TableRow, TableCell } from "@mui/material"
 

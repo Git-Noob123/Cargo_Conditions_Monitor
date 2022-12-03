@@ -1,3 +1,8 @@
+/* head.js    Justin Potter    Virginia Tech    October 10, 2022
+ * This defines the entries in the cargo data table's head
+ * Modified October 26, 2022 to add humidity threshold to table header
+ */
+
 import React from "react"
 import { TableHead, TableRow, TableCell } from "@mui/material"
 
