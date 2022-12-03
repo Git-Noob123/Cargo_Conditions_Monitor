@@ -1,3 +1,7 @@
+/*  CargoRepository.java   Jerry Dong     Virginia Tech       Sep 19, 2022 
+ *  A DAO interface between the springboot application and database
+ *  Modified Oct 12, 2022 to add findAllByOverseer
+ */ 
 package com.cargoconditions.backend.Repositories;
 
 import java.util.List;

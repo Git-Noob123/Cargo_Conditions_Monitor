@@ -1,3 +1,7 @@
+/*  CargoService.java   Jerry Dong     Virginia Tech       Sep 10, 2022 
+ *  User logic layer to check thresholds and perform operations
+ *  Modified Nov 23, 2022 to add notification setting
+ */ 
 package com.cargoconditions.backend.Services;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +13,6 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.BooleanSupplier;
 @Service
 @AllArgsConstructor
 public class CargoService {

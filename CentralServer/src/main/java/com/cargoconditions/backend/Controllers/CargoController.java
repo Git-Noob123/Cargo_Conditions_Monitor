@@ -1,10 +1,12 @@
+/*  CargoController.java   Jerry Dong     Virginia Tech       Sep 10, 2022 
+ *  Backend REST interface for cargos page
+ *  Modified Nov 13, 2022 to add notification setting 
+ */ 
 package com.cargoconditions.backend.Controllers;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +64,14 @@ public class CargoController {
 		}
 	}
 
+	/**
+	 * Set appliances states
+	 * @param id : cargo id
+	 * @param ac : AC status
+	 * @param heater: heater status
+	 * @param humidifier: humidifier status
+	 * @param dehumidifier: dehumidifier status
+	 */
 	@PatchMapping("/Appliances")
 	public void setAppliances(@RequestBody Cargo cargo){
 		if(cargoService.setAppliances(cargo.getId(), cargo.isAc(), cargo.isHeater(), cargo.isHumidifier(), cargo.isDehumidifier())){
@@ -72,6 +82,11 @@ public class CargoController {
 		}
 	}
 
+	/**
+	 * Set nofification status
+	 * @param id : cargo id
+	 * @param notify: notify status
+	 */
 	@PatchMapping("/Notify")
 	public void setNotifyStatus(@RequestBody Cargo cargo){
 		if(cargoService.setNotifyStatus(cargo.getId(), cargo.isNotify())){

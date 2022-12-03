@@ -1,3 +1,7 @@
+/*  OverseerController.java   Jerry Dong     Virginia Tech       Oct 7, 2022 
+ *  Backend REST interface for login page
+ *  Modified Oct 15, 2022 to fix CORS issue
+ */ 
 package com.cargoconditions.backend.Controllers;
 
 import org.springframework.http.HttpStatus;

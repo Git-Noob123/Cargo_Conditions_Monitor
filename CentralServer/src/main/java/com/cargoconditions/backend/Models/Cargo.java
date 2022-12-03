@@ -1,6 +1,8 @@
+/*  Cargo.java   Jerry Dong     Virginia Tech       Sep 19, 2022 
+ *  Model of each Cargo, used to be stored in database
+ *  Modified Nov 11, 2022 to add appliances settings
+ */ 
 package com.cargoconditions.backend.Models;
-
-import java.nio.file.attribute.AclEntry;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

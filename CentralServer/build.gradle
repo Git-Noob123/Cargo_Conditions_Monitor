@@ -1,3 +1,7 @@
+/*  build.gradle   Jerry Dong     Virginia Tech       Sep 10, 2022 
+ *  Confugure gradle setting for the Springboot application
+ *  Modified Sep 15, 2022 to add lombok 
+ */ 
 plugins {
 	id "io.freefair.lombok" version "6.5.1"
 	id 'org.springframework.boot' version '2.7.3'

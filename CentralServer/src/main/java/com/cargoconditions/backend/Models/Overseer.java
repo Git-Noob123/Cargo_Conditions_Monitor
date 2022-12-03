@@ -1,3 +1,6 @@
+/*  Overseer.java   Jerry Dong     Virginia Tech       Oct 7, 2022 
+ *  Model of each overseer, used to be stored in database
+ */ 
 package com.cargoconditions.backend.Models;
 
 import org.springframework.data.annotation.Id;

@@ -1,3 +1,7 @@
+/*  OverseerService.java   Jerry Dong     Virginia Tech       Oct 7, 2022 
+ *  User logic layer to validate login information
+ *  Modified Oct 12, 2022 to remove unused lines
+ */ 
 package com.cargoconditions.backend.Services;
 
 import java.util.ArrayList;
