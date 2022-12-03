@@ -1,3 +1,9 @@
+/* login_form.js    Jerry Dong, Justin Potter    Virginia Tech    October 13, 2022
+ * This defines a component that allows an overseer to log into the dashboard. Without logging in,
+ * an overseer cannot view his/her assigned cargo entries
+ * Modified November 12, 2022 to remove leftover whitespace and TODOs
+ */
+
 import React, { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import { Button, TextField, Box } from "@mui/material"
@@ -35,8 +41,6 @@ const LoginForm = () => {
 			setCurrUser("");
 		})
 	}
-
-
 
 	return (
 		<div style={{display: 'flex',  justifyContent:'center'}}>
@@ -92,8 +96,8 @@ const LoginForm = () => {
 					</Button>
 				</div>
 
-    		</Box>
-		 </div>
+			</Box>
+		</div>
 	)
 }
 

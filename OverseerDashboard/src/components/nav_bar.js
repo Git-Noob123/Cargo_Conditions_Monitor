@@ -1,3 +1,8 @@
+/* nav_bar.js    Jerry Dong, Justin Potter    Virginia Tech    October 13, 2022
+ * This defines a navigation bar that allows the overseer to navigate to different pages
+ * Modified November 9, 2022 to change display text of logout button
+ */
+
 import React from "react"
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,7 +14,7 @@ const NavBar = ()=>{
     const navigate = useNavigate();
     const {setCurrUser, setLoggedIn} = useContext(LoginContext)
     return (
-    <AppBar 
+    <AppBar
         position="static"
         style={{ background: '#630031' }}>
         <Toolbar>
@@ -32,8 +37,8 @@ const NavBar = ()=>{
                         setCurrUser("")
                         setLoggedIn(false)
                         navigate('/login');
-                    }} 
-            > 
+                    }}
+            >
                 Log out
             </Button>
         </Toolbar>
