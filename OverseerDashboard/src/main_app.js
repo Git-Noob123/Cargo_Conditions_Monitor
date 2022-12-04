@@ -1,4 +1,4 @@
-/* main_app.js    Justin Potter    Virginia Tech    September 21, 2022
+/* main_app.js    Jerry Dong, Justin Potter    Virginia Tech    September 21, 2022
  * This is the main web application which defines the different routes that the router uses.
  * Modified November 4, 2022 to add react-toastify popups
  */
