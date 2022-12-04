@@ -1,3 +1,10 @@
+/* appliances_row.js    Jerry Dong, Justin Potter    Virginia Tech    October 30, 2022
+ * This defines a single row of the appliances table. Every row has a switch for each appliance for
+ * the overseer to toggle it on/off, which will send a request to the server with that toggle
+ * Modified November 9, 2022 to make appliance rows' buttons comply with the web app's universal
+ * button style
+ */
+
 import React, { useState } from "react"
 
 import { TableRow, TableCell, Button } from "@mui/material"
@@ -67,7 +74,7 @@ const ApplianceRow = (props) => {
               />
         </TableCell>
         <TableCell align="center">
-            <Button 
+            <Button
               variant="contained"
               style={ButtonStyle()}
               onClick= {()=>{

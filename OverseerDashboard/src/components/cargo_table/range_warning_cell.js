@@ -1,3 +1,9 @@
+/* range_warning_cell.js    Justin Potter    Virginia Tech    October 24, 2022
+ * This defines a cell that changes its color to tell the overseer whether the value displayed is in
+ * or out of the specified threshold range
+ * Modified October 26, 2022 to fix RangeWarningCell not being its own cell
+ */
+
 import { TableCell, TextField } from "@mui/material"
 
 const INPUT_PROPS = {

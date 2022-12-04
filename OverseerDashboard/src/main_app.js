@@ -1,3 +1,8 @@
+/* main_app.js    Jerry Dong, Justin Potter    Virginia Tech    September 21, 2022
+ * This is the main web application which defines the different routes that the router uses.
+ * Modified November 4, 2022 to add react-toastify popups
+ */
+
 import React from "react"
 
 import CargoLayout from "./layouts/cargo_layout.js"
@@ -8,10 +13,7 @@ import { useState, createContext, useMemo } from "react";
 import NavBar from "./components/nav_bar.js";
 import LoginLayout from "./layouts/login_layout.js";
 import ApplianceLayout from "./layouts/appliance_layout.js";
-/**
- * We do our routings here at this level, as well as global components, such as top nav bar
- * Routings will look like a state machine(doesn't really have to)
- */
+
 export const LoginContext = createContext(null);
 const MainApp = () => {
 

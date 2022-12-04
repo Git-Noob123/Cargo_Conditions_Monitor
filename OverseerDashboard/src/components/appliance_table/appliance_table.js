@@ -1,3 +1,9 @@
+/* appliances_table.js    Jerry Dong    Virginia Tech    October 30, 2022
+ * This defines a table of appliances for cargo assigned to the overseer who is currently logged in.
+ * It allows the overseer to toggle on/off different appliances
+ * Modified November 2, 2022 to finish functionality
+ */
+
 import React, { useState, useContext, useCallback, useEffect} from "react"
 
 import ApplianceRow from "./appliance_row"
