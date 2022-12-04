@@ -39,14 +39,17 @@ def LoginInfo():
         'username':'justin',
         'password':'123'
     })
-    result=collection2.insert_one(user_1)
-    result=collection2.insert_one(user_2)
-    result=collection2.insert_one(user_3)
+    # result=collection2.insert_one(user_1)
+    # result=collection2.insert_one(user_2)
+    # result=collection2.insert_one(user_3)
+    result=collection2.replace_one({"_id":user_1['_id']},user_1,upsert=True)
+    result=collection2.replace_one({"_id":user_2['_id']},user_2,upsert=True)
+    result=collection2.replace_one({"_id":user_3['_id']},user_3,upsert=True)
 
 
 def insertOneData():
     cargo=({       
-        '_id':'transistors#1',   #_id should not be the same
+        '_id':'transistors#1', 
         'name':'transistors#1',
         'temperature':float(0),
         'humidity':float(0),
@@ -56,23 +59,13 @@ def insertOneData():
         'tempThreshHigh':float(-1.2343),
         'humidThreshLow':float(3),
         'humidThreshHigh':float(90.34),
-        'overseer':'overseer1'
+        'overseer':'Jerry',
+        "ac": False,
+        "heater": False,
+        "humidifier": False,
+        "dehumidifier": True
     })
-    result=collection.insert_one(cargo)
-    cargo2=({       
-        '_id':'transistors#2',   #_id should not be the same
-        'name':'transistors#2',
-        'temperature':float(20),
-        'humidity':float(30),
-        'driver':'Tom',
-        'notify':False,
-        'tempThreshLow':float(-10),
-        'tempThreshHigh':float(20),
-        'humidThreshLow':float(30),
-        'humidThreshHigh':float(50),
-        'overseer':'Jack'
-    })
-    result=collection.insert_one(cargo2)
+    result=collection.replace_one({"_id":cargo['_id']},cargo,upsert=True)
 
 def changename(username,cargoname):
     res=collection.update_one(filter={'name':cargoname},update={"$set":{'driver':username}})   
@@ -91,7 +84,10 @@ def checkUandP(a,b):
 
 def refreshDatabase(temp,humi,note):
     print(temp,humi,note,"in function")
-    res=collection.update_one(filter={'name':'cargo_0'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+    if note == True:
+        res=collection.update_one(filter={'name':'transistors#1'},update={"$set":{'temperature':temp, 'humidity':humi,'notify':note}})     
+    else: 
+        res=collection.update_one(filter={'name':'transistors#1'},update={"$set":{'temperature':temp, 'humidity':humi}})
 
 def getTempThresholdLow():
     myquery={"name": "transistors#1"}
@@ -269,6 +265,6 @@ def server_program():
 
 
 if __name__ == '__main__':
-    #insertOneData()
-    #LoginInfo()
+    insertOneData()
+    # LoginInfo()
     server_program()

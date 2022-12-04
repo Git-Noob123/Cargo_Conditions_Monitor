@@ -1,17 +1,21 @@
 import React from "react"
-import Header from "./header.js"
-import Body from "./body.js"
+import { TableContainer, Table} from "@mui/material"
+
+import CargoHead from "./head"
+import CargoBody from "./body"
 
 /**
  * Our Table component, a collection of header and body
  */
-const Table = (data) => {
+const CargoTable = () => {
 	return (
-		<table>
-			<Header/>
-			<Body data={data.data}/>
-		</table>
+		<TableContainer>
+			<Table align="center" sx={{width:1500}}>
+				<CargoHead/>
+				<CargoBody/>
+			</Table>
+		</TableContainer>
 	)
 }
 
-export default Table
+export default CargoTable
