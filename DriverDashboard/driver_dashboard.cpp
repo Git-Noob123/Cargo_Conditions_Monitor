@@ -1,3 +1,9 @@
+/*  driver_dashboard.cpp     Ruiyang Jiang     Virginia Tech      September 27
+ * This is the main file for the driver dashboard. It generate the UI and receive the data from server
+ * Qt creater, using UI form design
+*/
+
+
 #include "driver_dashboard.h"
 #include <QtNetwork>
 #include <iostream>

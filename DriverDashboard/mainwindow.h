@@ -1,3 +1,9 @@
+/*  mainwindow.h     Ruiyang Jiang     Virginia Tech      September 27
+ * This is the head file mainwindow
+ * Qt creater, using UI form design
+*/
+
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QWidget>

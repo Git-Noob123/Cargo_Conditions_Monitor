@@ -1,3 +1,8 @@
+/*  driver_dashboard.h     Ruiyang Jiang     Virginia Tech      September 27
+ * This is the head file for the driver dashboard
+ * Qt creater, using UI form design
+*/
+
 #ifndef DRIVER_DASHBOARD_H
 #define DRIVER_DASHBOARD_H
 #include <QString>

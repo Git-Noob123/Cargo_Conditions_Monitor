@@ -1,3 +1,9 @@
+/*  main.cpp     Ruiyang Jiang     Virginia Tech      September 27
+ * This is the main file
+ * Qt creater, using UI form design
+*/
+
+
 #include "mainwindow.h"
 
 #include <QApplication>

@@ -1,3 +1,7 @@
+#server.py    Ruiyang Jiang    Virginia Tech      September 27
+#This is the server file which generate the temperature data and humidity data
+#It also create and extract the information from the database
+
 from random import random
 from re import T
 import socket
