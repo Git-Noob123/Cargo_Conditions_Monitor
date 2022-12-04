@@ -12,17 +12,12 @@ import VerifyLogin from "../controllers/submit_login_info";
 import { LoginContext } from "../main_app";
 
 // TODO (QOL): Allow sending login info when 'enter' is pressed
-/**
- * Login page
- */
-
 const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();
 	const {setCurrUser, setLoggedIn } = useContext(LoginContext);
-
 
 	const handleSubmit = ()=>{
 		const payload = {

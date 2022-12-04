@@ -22,9 +22,6 @@ const COLORS = {
 }
 const INPUT_FIELD_VARIANT = "outlined"
 
-/**
- * Returns a formatted row of cargo data given said data
- */
 const CargoRow = (args) => {
 	// Set data
 	const index = args.index

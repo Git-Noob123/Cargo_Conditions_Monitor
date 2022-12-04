@@ -13,10 +13,7 @@ import { useState, createContext, useMemo } from "react";
 import NavBar from "./components/nav_bar.js";
 import LoginLayout from "./layouts/login_layout.js";
 import ApplianceLayout from "./layouts/appliance_layout.js";
-/**
- * We do our routings here at this level, as well as global components, such as top nav bar
- * Routings will look like a state machine(doesn't really have to)
- */
+
 export const LoginContext = createContext(null);
 const MainApp = () => {
 

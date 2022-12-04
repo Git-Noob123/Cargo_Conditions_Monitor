@@ -13,10 +13,6 @@ import CargoRow from "./row"
 
 const LOADING_TEXT = "Fetching data. Please wait..."
 
-/**
- * We fetch our data here inside this body component
- * @return the body of the table
- */
 const CargoBody = () => {
 	const [cargo, setCargo] = useState([])
 	const {currUser} = useContext(LoginContext)

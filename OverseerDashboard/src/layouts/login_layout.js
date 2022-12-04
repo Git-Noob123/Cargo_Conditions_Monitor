@@ -8,7 +8,6 @@ import React from "react"
 import LoginForm from "../components/login_form";
 import Title from "./title";
 
-
 const LoginLayout = () => {
 	return (
 		<div>
